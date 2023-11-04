@@ -5,7 +5,7 @@
 ```
 npm run migrate
 ```
-### Note :
+Note :
 Sebelum migrasi, salin file `.env.example` menjadi `.env` dan sesuaikan dengan konfigurasi database kalian
 ```bash
 cp .env.example .env
