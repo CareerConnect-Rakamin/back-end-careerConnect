@@ -1,6 +1,6 @@
 # CareerConnect
 
-## Getting Started
+### Getting Started
 1. Untuk migrasi model ke database
 ```
 npm run migrate
