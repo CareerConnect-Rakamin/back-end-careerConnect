@@ -1,5 +1,5 @@
-const { Sequelize } = require('sequelize');
-require('dotenv').config();
+const { Sequelize } = require('sequelize')
+require('dotenv').config()
 
 const sequelize = new Sequelize({
   dialect: 'postgres',
@@ -8,10 +8,10 @@ const sequelize = new Sequelize({
   username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-});
+})
 
-const port = process.env.PORT_APP || 3000;
-const api = process.env.API_PATH || "api/v1";
+const port = process.env.PORT_APP || 3000
+const api = process.env.API_PATH || 'api/v1'
 
 module.exports = {
   sequelize,
