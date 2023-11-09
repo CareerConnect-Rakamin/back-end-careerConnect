@@ -45,6 +45,7 @@ const Company = sequelize.define(
     },
     phone_number: {
       type: DataTypes.STRING(20),
+      unique: true,
     },
     address: {
       type: DataTypes.TEXT,
