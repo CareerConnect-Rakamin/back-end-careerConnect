@@ -13,13 +13,14 @@ const User = sequelize.define(
     email: {
       type: DataTypes.STRING(50),
       allowNull: false,
+      unique: true,
     },
     password: {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
     role: {
-      type: DataTypes.ENUM('user', 'company'),
+      type: DataTypes.ENUM('jobseeker', 'company'),
       allowNull: false,
     },
   },
