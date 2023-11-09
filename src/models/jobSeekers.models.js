@@ -18,12 +18,16 @@ const JobSeeker = sequelize.define(
       type: DataTypes.STRING(50),
       allowNull: false,
     },
+    bio: {
+      type: DataTypes.TEXT,
+    },
     gender: {
       type: DataTypes.CHAR,
       allowNull: false,
     },
     phone_number: {
       type: DataTypes.STRING(20),
+      unique: true,
     },
     address: {
       type: DataTypes.TEXT,
