@@ -1,6 +1,6 @@
-const { DataTypes } = require('sequelize')
-const { sequelize } = require('../config')
-const User = require('./users.models')
+const { DataTypes } = require('sequelize');
+const { sequelize } = require('../config');
+const User = require('./users.models');
 
 const Company = sequelize.define(
   'companies',
@@ -8,15 +8,15 @@ const Company = sequelize.define(
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      allowNull: false,
+      allowNull: false
     },
     photo_profile: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: false
     },
     name: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: false
     },
     type: {
       type: DataTypes.ENUM(
@@ -28,36 +28,36 @@ const Company = sequelize.define(
         'Entertainment',
         'Manufacturing',
         'Consulting',
-        'Energy',
+        'Energy'
       ),
-      allowNull: false,
+      allowNull: false
     },
     description: {
-      type: DataTypes.TEXT,
+      type: DataTypes.TEXT
     },
     website: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(255)
     },
     email: {
       type: DataTypes.STRING(255),
       allowNull: false,
-      unique: true,
+      unique: true
     },
     phone_number: {
       type: DataTypes.STRING(20),
-      unique: true,
+      unique: true
     },
     address: {
-      type: DataTypes.TEXT,
-    },
+      type: DataTypes.TEXT
+    }
   },
   {
     tableName: 'companies',
     freezeTableName: true,
-    timestamps: true,
-  },
-)
+    timestamps: true
+  }
+);
 
-Company.belongsTo(User, { foreignKey: 'id' })
+Company.belongsTo(User, { foreignKey: 'id' });
 
-module.exports = Company
+module.exports = Company;

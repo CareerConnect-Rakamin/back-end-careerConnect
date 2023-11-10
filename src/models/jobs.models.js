@@ -1,6 +1,6 @@
-const { DataTypes } = require('sequelize')
-const { sequelize } = require('../config')
-const Company = require('./companies.models')
+const { DataTypes } = require('sequelize');
+const { sequelize } = require('../config');
+const Company = require('./companies.models');
 
 const Job = sequelize.define(
   'jobs',
@@ -9,54 +9,65 @@ const Job = sequelize.define(
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-      allowNull: false,
+      allowNull: false
     },
     companies_id: {
       type: DataTypes.INTEGER,
       references: {
         model: Company,
-        key: 'id',
-      },
+        key: 'id'
+      }
     },
     name: {
       type: DataTypes.STRING(50),
-      allowNull: false,
+      allowNull: false
     },
     description: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: false
     },
     location: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: false
     },
     category: {
-      type: DataTypes.STRING(50),
-      allowNull: false,
+      type: DataTypes.ENUM(
+        'Information',
+        'Technology',
+        'Healthcare',
+        'Finance',
+        'Education',
+        'Sales',
+        'Marketing',
+        'Engineering',
+        'Customer_Service',
+        'Human_Resources'
+      ),
+      allowNull: false
     },
     job_type: {
       type: DataTypes.ENUM('WFO', 'WFH'),
-      allowNull: false,
+      allowNull: false
     },
     salary: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.BIGINT
     },
     capacity: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER
     },
     is_open: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: true,
-    },
+      defaultValue: true
+    }
   },
   {
     tableName: 'jobs',
     freezeTableName: true,
-    timestamps: true,
-  },
-)
+    timestamps: true
+  }
+);
 
-Job.belongsTo(Company, { foreignKey: 'companies_id' })
+Job.belongsTo(Company, { foreignKey: 'companies_id' });
 
-module.exports = Job
+module.exports = Job;
