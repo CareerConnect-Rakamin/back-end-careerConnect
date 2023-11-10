@@ -1,6 +1,6 @@
-const { JobModel } = require('../models')
+const { JobModel } = require('../models');
 
-const jobs = []
+const jobs = [];
 
 const createJob = (
   companies_id,
@@ -11,7 +11,7 @@ const createJob = (
   job_type,
   salary,
   capacity,
-  is_open,
+  is_open
 ) => {
   try {
     const job = {
@@ -23,14 +23,14 @@ const createJob = (
       job_type,
       salary,
       capacity,
-      is_open,
-    }
-    jobs.push(job)
-    console.info('Job created successfully.')
+      is_open
+    };
+    jobs.push(job);
+    console.info('Job created successfully.');
   } catch (error) {
-    console.error('Error creating job:', error)
+    console.error('Error creating job:', error);
   }
-}
+};
 
 createJob(
   2,
@@ -41,8 +41,8 @@ createJob(
   'WFH',
   3000000,
   10,
-  true,
-)
+  true
+);
 createJob(
   4,
   'Human Resouces',
@@ -52,16 +52,16 @@ createJob(
   'WFO',
   2500000,
   5,
-  true,
-)
+  true
+);
 
 const seedJobs = async () => {
   try {
-    await JobModel.bulkCreate(jobs)
-    console.info('Job seed data inserted successfully.')
+    await JobModel.bulkCreate(jobs);
+    console.info('Job seed data inserted successfully.');
   } catch (error) {
-    console.error('Error seeding job data:', error)
+    console.error('Error seeding job data:', error);
   }
-}
+};
 
-module.exports = seedJobs
+module.exports = seedJobs;

@@ -1,6 +1,6 @@
-const { CompanyModel } = require('../models')
+const { CompanyModel } = require('../models');
 
-const companies = []
+const companies = [];
 
 const createCompany = (
   id,
@@ -11,7 +11,7 @@ const createCompany = (
   website,
   email,
   phone_number,
-  address,
+  address
 ) => {
   try {
     const company = {
@@ -23,14 +23,14 @@ const createCompany = (
       website,
       email,
       phone_number,
-      address,
-    }
-    companies.push(company)
-    console.info('Company created successfully.')
+      address
+    };
+    companies.push(company);
+    console.info('Company created successfully.');
   } catch (error) {
-    console.error('Error creating company:', error)
+    console.error('Error creating company:', error);
   }
-}
+};
 
 createCompany(
   2,
@@ -41,8 +41,8 @@ createCompany(
   'www.techcompany.com',
   'techcompany@gmail.com',
   '+62852123456789',
-  'Jakarta, Wakanda',
-)
+  'Jakarta, Wakanda'
+);
 createCompany(
   4,
   'public/uploads/default/company.png',
@@ -52,8 +52,8 @@ createCompany(
   'www.healthcompany.com',
   'healthcompany@gmail.com',
   '+62852123423789',
-  'Surabaya, Wakanda',
-)
+  'Surabaya, Wakanda'
+);
 createCompany(
   6,
   'public/uploads/default/company.png',
@@ -63,16 +63,16 @@ createCompany(
   'www.papercompany.com',
   'papercompany@gmail.com',
   '+62852124456789',
-  'Bandung, Wakanda',
-)
+  'Bandung, Wakanda'
+);
 
 const seedCompanies = async () => {
   try {
-    await CompanyModel.bulkCreate(companies)
-    console.info('Company seed data inserted successfully.')
+    await CompanyModel.bulkCreate(companies);
+    console.info('Company seed data inserted successfully.');
   } catch (error) {
-    console.error('Error seeding company data:', error)
+    console.error('Error seeding company data:', error);
   }
-}
+};
 
-module.exports = seedCompanies
+module.exports = seedCompanies;

@@ -1,6 +1,6 @@
-const { JobSeekerModel } = require('../models')
+const { JobSeekerModel } = require('../models');
 
-const jobseekers = []
+const jobseekers = [];
 
 const createJobSeeker = (
   id,
@@ -13,7 +13,7 @@ const createJobSeeker = (
   date_of_birth,
   cv_path,
   portfolio_path,
-  on_work,
+  on_work
 ) => {
   try {
     const jobseeker = {
@@ -27,14 +27,14 @@ const createJobSeeker = (
       date_of_birth,
       cv_path,
       portfolio_path,
-      on_work,
-    }
-    jobseekers.push(jobseeker)
-    console.info('JobSeeker created successfully.')
+      on_work
+    };
+    jobseekers.push(jobseeker);
+    console.info('JobSeeker created successfully.');
   } catch (error) {
-    console.error('Error creating jobseeker:', error)
+    console.error('Error creating jobseeker:', error);
   }
-}
+};
 
 createJobSeeker(
   1,
@@ -47,8 +47,8 @@ createJobSeeker(
   new Date(2000, 6, 12),
   null,
   null,
-  false,
-)
+  false
+);
 createJobSeeker(
   3,
   `public/uploads/default/woman.png`,
@@ -60,8 +60,8 @@ createJobSeeker(
   new Date(2002, 3, 14),
   null,
   null,
-  false,
-)
+  false
+);
 createJobSeeker(
   5,
   `public/uploads/default/man.png`,
@@ -73,16 +73,16 @@ createJobSeeker(
   new Date(1999, 10, 23),
   null,
   null,
-  false,
-)
+  false
+);
 
 const seedJobSeekers = async () => {
   try {
-    await JobSeekerModel.bulkCreate(jobseekers)
-    console.info('JobSeeker seed data inserted successfully.')
+    await JobSeekerModel.bulkCreate(jobseekers);
+    console.info('JobSeeker seed data inserted successfully.');
   } catch (error) {
-    console.error('Error seeding jobseeker data:', error)
+    console.error('Error seeding jobseeker data:', error);
   }
-}
+};
 
-module.exports = seedJobSeekers
+module.exports = seedJobSeekers;
