@@ -31,7 +31,18 @@ const Job = sequelize.define(
       allowNull: false,
     },
     category: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.ENUM(
+        'Information',
+        'Technology',
+        'Healthcare',
+        'Finance',
+        'Education',
+        'Sales',
+        'Marketing',
+        'Engineering',
+        'Customer_Service',
+        'Human_Resources',
+      ),
       allowNull: false,
     },
     job_type: {
