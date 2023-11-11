@@ -1,11 +1,7 @@
 const { companyRepositories } = require('../repositories')
-const ResponseError = require('../utils/response.error')
-const getCompanyById = async (id) => {
-  if (!id) {
-    const err = new ResponseError(400, 'Id is required')
-    throw err
-  }
+const ResponseError = require('../utils/response.error.js')
 
+const getCompanyById = async (id) => {
   const result = await companyRepositories.getCompanyById(id)
 
   if (!result) {
@@ -15,4 +11,41 @@ const getCompanyById = async (id) => {
   return result
 }
 
-module.exports = { getCompanyById }
+const updateCompanyById = async (params, body) => {
+  const { id } = params
+  const {
+    photo_profile,
+    name,
+    type,
+    description,
+    website,
+    email,
+    phone_number,
+    address,
+  } = body
+
+  const cekId = await companyRepositories.getCompanyById(id)
+
+  if (!cekId) {
+    const err = new ResponseError(404, 'Company not found')
+    throw err
+  }
+
+  const result = await companyRepositories.updateCompnyById(id, {
+    photo_profile,
+    name,
+    type,
+    description,
+    website,
+    email,
+    phone_number,
+    address,
+  })
+
+  if (!result) {
+    const err = new ResponseError(500, 'Internal server error')
+    throw err
+  }
+  return result
+}
+module.exports = { getCompanyById, updateCompanyById }
