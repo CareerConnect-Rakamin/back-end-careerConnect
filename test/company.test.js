@@ -53,7 +53,7 @@ describe('GET /company/:id', function () {
       .set('Authorization', `Bearer ${aksesToken}`)
 
     expect(result.status).toBe(400)
-    expect(result.body.message).toBe('Id must be a number')
+    expect(result.body.message).toBe('Invalid form')
     expect(result.body.data).toBeUndefined
   })
   it('should reject if not have token ', async () => {
