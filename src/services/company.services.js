@@ -2,6 +2,10 @@ const { companyRepositories } = require('../repositories')
 const ResponseError = require('../utils/response.error.js')
 
 const getCompanyById = async (id) => {
+  if (isNaN(Number(id))) {
+    const err = new ResponseError(400, 'Id must be a number')
+    throw err
+  }
   const result = await companyRepositories.getCompanyById(id)
 
   if (!result) {
@@ -13,6 +17,10 @@ const getCompanyById = async (id) => {
 
 const updateCompanyById = async (params, body) => {
   const { id } = params
+  if (isNaN(Number(id))) {
+    const err = new ResponseError(400, 'Id must be a number')
+    throw err
+  }
   const {
     photo_profile,
     name,
