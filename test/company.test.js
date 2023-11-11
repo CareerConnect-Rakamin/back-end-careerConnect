@@ -17,7 +17,7 @@ const payload = {
 const key = process.env.JWT_SECRET
 const aksesToken = jwt.sign(payload, key, { expiresIn: '2h' })
 
-describe('GET /activity/:id', function () {
+describe('GET /company/:id', function () {
   beforeEach(async () => {
     await createUser()
     await createCompany()
