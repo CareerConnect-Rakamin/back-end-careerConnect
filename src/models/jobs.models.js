@@ -1,8 +1,8 @@
 const { DataTypes } = require('sequelize');
-const { sequelize } = require('../config');
+const { db } = require('../config');
 const Company = require('./companies.models');
 
-const Job = sequelize.define(
+const Job = db.define(
   'jobs',
   {
     id: {
