@@ -12,4 +12,15 @@ const getCompanyById = async (req, res) => {
   }
 }
 
-module.exports = { getCompanyById }
+const updateCompanyById = async (req, res) => {
+  try {
+    const result = await companyServices.updateCompanyById(req.params, req.body)
+    res.json({
+      status: 'success',
+      data: result,
+    })
+  } catch (err) {
+    res.status(err.status).json(err.message)
+  }
+}
+module.exports = { getCompanyById, updateCompanyById }
