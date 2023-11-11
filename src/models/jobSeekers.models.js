@@ -1,6 +1,6 @@
-const { DataTypes } = require('sequelize')
-const { sequelize } = require('../config')
-const User = require('./users.models')
+const { DataTypes } = require('sequelize');
+const { sequelize } = require('../config');
+const User = require('./users.models');
 
 const JobSeeker = sequelize.define(
   'jobseekers',
@@ -8,53 +8,53 @@ const JobSeeker = sequelize.define(
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      allowNull: false,
+      allowNull: false
     },
     photo_profile: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: false
     },
     full_name: {
       type: DataTypes.STRING(50),
-      allowNull: false,
+      allowNull: false
     },
     bio: {
-      type: DataTypes.TEXT,
+      type: DataTypes.TEXT
     },
     gender: {
       type: DataTypes.CHAR,
-      allowNull: false,
+      allowNull: false
     },
     phone_number: {
       type: DataTypes.STRING(20),
-      unique: true,
+      unique: true
     },
     address: {
-      type: DataTypes.TEXT,
+      type: DataTypes.TEXT
     },
     date_of_birth: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: false
     },
     cv_path: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(255)
     },
     portfolio_path: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING(255)
     },
     on_work: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: false,
-    },
+      defaultValue: false
+    }
   },
   {
     tableName: 'jobseekers',
     freezeTableName: true,
-    timestamps: true,
-  },
-)
+    timestamps: true
+  }
+);
 
-JobSeeker.belongsTo(User, { foreignKey: 'id' })
+JobSeeker.belongsTo(User, { foreignKey: 'id' });
 
-module.exports = JobSeeker
+module.exports = JobSeeker;

@@ -1,7 +1,7 @@
-const { DataTypes } = require('sequelize')
-const { sequelize } = require('../config')
-const JobSeeker = require('./jobSeekers.models')
-const Job = require('./jobs.models')
+const { DataTypes } = require('sequelize');
+const { sequelize } = require('../config');
+const JobSeeker = require('./jobSeekers.models');
+const Job = require('./jobs.models');
 
 const Application = sequelize.define(
   'applications',
@@ -11,16 +11,16 @@ const Application = sequelize.define(
       primaryKey: true,
       references: {
         model: JobSeeker,
-        key: 'id',
-      },
+        key: 'id'
+      }
     },
     jobs_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       references: {
         model: Job,
-        key: 'id',
-      },
+        key: 'id'
+      }
     },
     status: {
       type: DataTypes.ENUM(
@@ -28,19 +28,19 @@ const Application = sequelize.define(
         'pending',
         'interview',
         'accepted',
-        'rejected',
+        'rejected'
       ),
-      allowNull: false,
-    },
+      allowNull: false
+    }
   },
   {
     tableName: 'applications',
     freezeTableName: true,
-    timestamps: true,
-  },
-)
+    timestamps: true
+  }
+);
 
-Application.belongsTo(JobSeeker, { foreignKey: 'jobseekers_id' })
-Application.belongsTo(Job, { foreignKey: 'jobs_id' })
+Application.belongsTo(JobSeeker, { foreignKey: 'jobseekers_id' });
+Application.belongsTo(Job, { foreignKey: 'jobs_id' });
 
-module.exports = Application
+module.exports = Application;

@@ -1,5 +1,5 @@
-const { DataTypes } = require('sequelize')
-const { sequelize } = require('../config')
+const { DataTypes } = require('sequelize');
+const { sequelize } = require('../config');
 
 const User = sequelize.define(
   'users',
@@ -8,27 +8,27 @@ const User = sequelize.define(
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-      allowNull: false,
+      allowNull: false
     },
     email: {
       type: DataTypes.STRING(50),
       allowNull: false,
-      unique: true,
+      unique: true
     },
     password: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: false
     },
     role: {
       type: DataTypes.ENUM('jobseeker', 'company'),
-      allowNull: false,
-    },
+      allowNull: false
+    }
   },
   {
     tableName: 'users',
     freezeTableName: true,
-    timestamps: true,
-  },
-)
+    timestamps: true
+  }
+);
 
-module.exports = User
+module.exports = User;
