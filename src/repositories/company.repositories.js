@@ -1,9 +1,9 @@
-const { CompanyModel } = require('../models')
+const { CompanyModel } = require('../models');
 
 const getCompanyById = async (id) => {
-  const result = await CompanyModel.findByPk(id)
-  return result
-}
+  const result = await CompanyModel.findByPk(id);
+  return result;
+};
 
 const updateCompnyById = async (
   id,
@@ -15,9 +15,13 @@ const updateCompnyById = async (
     website,
     email,
     phone_number,
-    address,
-  },
+    address
+  }
 ) => {
+  const getOldPhoto = await await CompanyModel.findByPk(id);
+
+  const oldPhoto = getOldPhoto.photo_profile;
+
   const result = await CompanyModel.update(
     {
       photo_profile,
@@ -27,15 +31,16 @@ const updateCompnyById = async (
       website,
       email,
       phone_number,
-      address,
+      address
     },
     {
       where: {
-        id: id,
+        id: id
       },
-      returning: true,
-    },
-  )
-  return result
-}
-module.exports = { getCompanyById, updateCompnyById }
+      returning: true
+    }
+  );
+  const data = { result, oldPhoto };
+  return data;
+};
+module.exports = { getCompanyById, updateCompnyById };
