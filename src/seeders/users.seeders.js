@@ -1,17 +1,13 @@
 const bcrypt = require('bcrypt');
 const { UserModel } = require('../models');
+const logger = require('../utils/logger');
 
 const users = [];
 
 const createUser = (email, password, role) => {
-  try {
-    const hashedPassword = bcrypt.hashSync(password, 10);
-    const user = { email, password: hashedPassword, role };
-    users.push(user);
-    console.info('User created successfully.');
-  } catch (error) {
-    console.error('Error creating user:', error);
-  }
+  const hashedPassword = bcrypt.hashSync(password, 10);
+  const user = { email, password: hashedPassword, role };
+  users.push(user);
 };
 
 for (let i = 0; i < 3; i++) {
@@ -22,9 +18,9 @@ for (let i = 0; i < 3; i++) {
 const seedUsers = async () => {
   try {
     await UserModel.bulkCreate(users);
-    console.info('User seed data inserted successfully.');
+    logger.info('User seed data inserted successfully.');
   } catch (error) {
-    console.error('Error seeding user data:', error);
+    logger.error('Error seeding user data:', error);
   }
 };
 

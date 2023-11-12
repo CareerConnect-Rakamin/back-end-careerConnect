@@ -1,15 +1,11 @@
 const { CertificateModel } = require('../models');
+const logger = require('../utils/logger');
 
 const certificates = [];
 
 const createCertificate = (jobseekers_id, name, path) => {
-  try {
-    const certificate = { jobseekers_id, name, path };
-    certificates.push(certificate);
-    console.info('Certificate created successfully.');
-  } catch (error) {
-    console.error('Error creating certificate:', error);
-  }
+  const certificate = { jobseekers_id, name, path };
+  certificates.push(certificate);
 };
 
 createCertificate(1, `Certificate For Me`, `public/uploads/1/certificate1.pdf`);
@@ -27,9 +23,9 @@ createCertificate(
 const seedCertificates = async () => {
   try {
     await CertificateModel.bulkCreate(certificates);
-    console.info('Certificate seed data inserted successfully.');
+    logger.info('Certificate seed data inserted successfully.');
   } catch (error) {
-    console.error('Error seeding certificate data:', error);
+    logger.error('Error seeding certificate data:', error);
   }
 };
 
