@@ -1,3 +1,4 @@
-const authMiddlewares = require('./auth.middlewares')
-const validator = require('./validator')
-module.exports = { authMiddlewares, validator }
+const authMiddlewares = require('./auth.middlewares');
+const validator = require('./validator');
+const uploadFileMiddleware = require('./multer.middlerware');
+module.exports = { authMiddlewares, validator, uploadFileMiddleware };
