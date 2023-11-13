@@ -1,4 +1,5 @@
 const { JobModel } = require('../models');
+const logger = require('../utils/logger');
 
 const jobs = [];
 
@@ -13,23 +14,18 @@ const createJob = (
   capacity,
   is_open
 ) => {
-  try {
-    const job = {
-      companies_id,
-      name,
-      description,
-      location,
-      category,
-      job_type,
-      salary,
-      capacity,
-      is_open
-    };
-    jobs.push(job);
-    console.info('Job created successfully.');
-  } catch (error) {
-    console.error('Error creating job:', error);
-  }
+  const job = {
+    companies_id,
+    name,
+    description,
+    location,
+    category,
+    job_type,
+    salary,
+    capacity,
+    is_open
+  };
+  jobs.push(job);
 };
 
 createJob(
@@ -58,9 +54,9 @@ createJob(
 const seedJobs = async () => {
   try {
     await JobModel.bulkCreate(jobs);
-    console.info('Job seed data inserted successfully.');
+    logger.info('Job seed data inserted successfully.');
   } catch (error) {
-    console.error('Error seeding job data:', error);
+    logger.error('Error seeding job data:', error);
   }
 };
 

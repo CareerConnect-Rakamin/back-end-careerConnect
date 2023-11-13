@@ -1,4 +1,5 @@
 const { JobSeekerModel } = require('../models');
+const logger = require('../utils/logger');
 
 const jobseekers = [];
 
@@ -15,25 +16,20 @@ const createJobSeeker = (
   portfolio_path,
   on_work
 ) => {
-  try {
-    const jobseeker = {
-      id,
-      photo_profile,
-      full_name,
-      bio,
-      gender,
-      phone_number,
-      address,
-      date_of_birth,
-      cv_path,
-      portfolio_path,
-      on_work
-    };
-    jobseekers.push(jobseeker);
-    console.info('JobSeeker created successfully.');
-  } catch (error) {
-    console.error('Error creating jobseeker:', error);
-  }
+  const jobseeker = {
+    id,
+    photo_profile,
+    full_name,
+    bio,
+    gender,
+    phone_number,
+    address,
+    date_of_birth,
+    cv_path,
+    portfolio_path,
+    on_work
+  };
+  jobseekers.push(jobseeker);
 };
 
 createJobSeeker(
@@ -79,9 +75,9 @@ createJobSeeker(
 const seedJobSeekers = async () => {
   try {
     await JobSeekerModel.bulkCreate(jobseekers);
-    console.info('JobSeeker seed data inserted successfully.');
+    logger.info('JobSeeker seed data inserted successfully.');
   } catch (error) {
-    console.error('Error seeding jobseeker data:', error);
+    logger.error('Error seeding jobseeker data:', error);
   }
 };
 
