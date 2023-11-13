@@ -21,7 +21,7 @@ const updateCompanyById = async (req, res) => {
     );
     res.json({
       message: 'Success',
-      data: result
+      data: result[1]
     });
   } catch (err) {
     res.status(err.status).json({ message: err.message });
