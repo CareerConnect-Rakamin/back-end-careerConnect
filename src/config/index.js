@@ -12,9 +12,11 @@ const db = new Sequelize({
 
 const port = process.env.PORT_APP || 3000;
 const api = process.env.API_PATH || 'api/v1';
+const secretKey = process.env.SECRET_KEY;
 
 module.exports = {
   db,
   port,
-  api
+  api,
+  secretKey
 };
