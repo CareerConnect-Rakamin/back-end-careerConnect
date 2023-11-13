@@ -1,17 +1,23 @@
-// dependency multer
 const multer = require('multer');
-// dependency path
 const path = require('path');
+const fs = require('fs');
+
+const uploadDir = path.join(__dirname, '../../public/uploads/photo_profile');
+
+// Membuat direktori jika belum ada
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, '../public/uploads/photo_profile'); // Direktori tempat file akan disimpan
+    cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
     cb(
       null,
       file.fieldname + '-' + Date.now() + path.extname(file.originalname)
-    ); // Nama file yang akan disimpan
+    );
   }
 });
 
