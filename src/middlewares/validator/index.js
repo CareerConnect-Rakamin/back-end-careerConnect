@@ -15,7 +15,7 @@ function validate(validations) {
 
     return res.status(400).json({
       status: 'Failed',
-      message: 'Invalid form',
+      message: 'Invalid input',
       errors: errors.array()
     });
   };

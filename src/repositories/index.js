@@ -1,3 +1,3 @@
-const jobsRepository = require('./jobs.repository');
+const jobsRepositories = require('./jobs.repositories');
 
-module.exports = { jobsRepository };
+module.exports = { jobsRepositories };

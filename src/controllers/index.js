@@ -1,3 +1,3 @@
-const jobsController = require('./jobs.controller');
+const jobsControllers = require('./jobs.controllers');
 
-module.exports = { jobsController };
+module.exports = { jobsControllers };

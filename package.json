@@ -8,6 +8,7 @@
     "migrate": "node ./src/utils/db.js",
     "prettier": "prettier --write .",
     "lint": "eslint .",
+    "test": "jest",
     "start": "nodemon ./src/app.js"
   },
   "keywords": [],
@@ -25,6 +26,7 @@
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.34.0",
     "sequelize-cli": "^6.6.2",
+    "supertest": "^6.3.3",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",
     "winston": "^3.11.0"

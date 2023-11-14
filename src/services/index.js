@@ -1,3 +1,3 @@
-const jobsService = require('./jobs.service');
+const jobsServices = require('./jobs.services');
 
-module.exports = { jobsService };
+module.exports = { jobsServices };

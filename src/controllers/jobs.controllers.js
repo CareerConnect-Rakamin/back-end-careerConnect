@@ -1,8 +1,8 @@
-const { jobsService } = require('../services');
+const { jobsServices } = require('../services');
 
 async function getJobs(req, res) {
   try {
-    const result = await jobsService.getJobs(req.query);
+    const result = await jobsServices.getJobs(req.query);
     res.json({
       status: 'Success',
       data: result

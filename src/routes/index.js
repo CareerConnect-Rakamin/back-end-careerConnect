@@ -1,8 +1,8 @@
 const { Router } = require('express');
-const jobsRoute = require('./jobs.route');
+const jobsRoutes = require('./jobs.routes');
 
 const router = Router();
 
-router.use('/jobs', jobsRoute);
+router.use('/jobs', jobsRoutes);
 
 module.exports = router;
