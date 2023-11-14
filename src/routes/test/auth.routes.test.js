@@ -12,7 +12,7 @@ describe('Login User', () => {
     };
 
     request(app)
-      .post(`/${api}/login`)
+      .post(`/${api}/auth/login`)
       .send(input)
       .expect(200)
       .then((response) => {
@@ -26,7 +26,7 @@ describe('Login User', () => {
       password: 'password10'
     };
 
-    request(app).post(`/${api}/login`).send(input).expect(401, done);
+    request(app).post(`/${api}/auth/login`).send(input).expect(401, done);
   });
   it('Should return status 400 invalid form', (done) => {
     const input = {
@@ -34,6 +34,6 @@ describe('Login User', () => {
       password: 12345678
     };
 
-    request(app).post(`/${api}/login`).send(input).expect(400, done);
+    request(app).post(`/${api}/auth/login`).send(input).expect(400, done);
   });
 });
