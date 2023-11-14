@@ -12,8 +12,8 @@ router.get(
 );
 router.put(
   '/:id',
-  [validate(requirements.updateCompanyById)],
   uploadFileMiddleware.single('file'),
+  [validate(requirements.updateCompanyById)],
   companyControllers.updateCompanyById
 );
 
