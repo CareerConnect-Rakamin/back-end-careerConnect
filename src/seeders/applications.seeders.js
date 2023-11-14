@@ -1,15 +1,11 @@
 const { ApplicationModel } = require('../models');
+const logger = require('../utils/logger');
 
 const applications = [];
 
 const createApplication = (jobseekers_id, jobs_id, status) => {
-  try {
-    const application = { jobseekers_id, jobs_id, status };
-    applications.push(application);
-    console.info('Application created successfully.');
-  } catch (error) {
-    console.error('Error creating application:', error);
-  }
+  const application = { jobseekers_id, jobs_id, status };
+  applications.push(application);
 };
 
 createApplication(1, 1, 'pending');
@@ -19,9 +15,9 @@ createApplication(3, 2, 'pending');
 const seedApplications = async () => {
   try {
     await ApplicationModel.bulkCreate(applications);
-    console.info('Application seed data inserted successfully.');
+    logger.info('Application seed data inserted successfully.');
   } catch (error) {
-    console.error('Error seeding application data:', error);
+    logger.error('Error seeding application data:', error);
   }
 };
 

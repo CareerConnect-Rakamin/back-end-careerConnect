@@ -1,4 +1,4 @@
-const swaggerJsdoc = require('swagger-jsdoc')
+const swaggerJsdoc = require('swagger-jsdoc');
 
 const options = {
   definition: {
@@ -6,17 +6,17 @@ const options = {
     info: {
       title: "CareerConnect's API",
       version: '1.0.0',
-      description: 'A simple Express API for CareerConnect documentation',
+      description: 'A simple Express API for CareerConnect documentation'
     },
     servers: [
       {
-        url: 'http://localhost:3000/api/v1',
-      },
-    ],
+        url: 'http://localhost:3000/api/v1'
+      }
+    ]
   },
-  apis: ['./docs/v1/*.js'],
-}
+  apis: ['./docs/v1/*.js']
+};
 
-const specs = swaggerJsdoc(options)
+const specs = swaggerJsdoc(options);
 
-module.exports = specs
+module.exports = specs;

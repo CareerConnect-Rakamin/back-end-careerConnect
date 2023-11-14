@@ -1,4 +1,5 @@
 const { CompanyModel } = require('../models');
+const logger = require('../utils/logger');
 
 const companies = [];
 
@@ -13,23 +14,18 @@ const createCompany = (
   phone_number,
   address
 ) => {
-  try {
-    const company = {
-      id,
-      photo_profile,
-      name,
-      type,
-      description,
-      website,
-      email,
-      phone_number,
-      address
-    };
-    companies.push(company);
-    console.info('Company created successfully.');
-  } catch (error) {
-    console.error('Error creating company:', error);
-  }
+  const company = {
+    id,
+    photo_profile,
+    name,
+    type,
+    description,
+    website,
+    email,
+    phone_number,
+    address
+  };
+  companies.push(company);
 };
 
 createCompany(
@@ -69,9 +65,9 @@ createCompany(
 const seedCompanies = async () => {
   try {
     await CompanyModel.bulkCreate(companies);
-    console.info('Company seed data inserted successfully.');
+    logger.info('Company seed data inserted successfully.');
   } catch (error) {
-    console.error('Error seeding company data:', error);
+    logger.error('Error seeding company data:', error);
   }
 };
 
