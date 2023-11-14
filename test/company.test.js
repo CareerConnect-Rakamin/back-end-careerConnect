@@ -96,7 +96,7 @@ describe('PUT /company/:id', function () {
       .set('Authorization', `Bearer ${aksesToken}`)
       .attach(
         'file',
-        path.join(__dirname, '../../public/uploads/file-1699930997393.png')
+        path.join(__dirname, '../public/uploads/file-1699930997393.png')
       )
       .field('name', 'inal')
       .field('type', 'Technology')
