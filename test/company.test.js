@@ -8,6 +8,7 @@ const {
 const supertest = require('supertest');
 const jwt = require('jsonwebtoken');
 const app = require('../src/app.js');
+const path = require('path');
 require('dotenv').config();
 
 const payload = {
@@ -75,4 +76,55 @@ describe('GET /company/:id', function () {
       'Token akses tidak valid atau kedaluwarsa.'
     );
   });
+});
+
+describe('PUT /company/:id', function () {
+  beforeEach(async () => {
+    await createUser();
+    await createCompany();
+  });
+
+  afterEach(async () => {
+    await removeCompany();
+    await removeUsers();
+  });
+
+  it('should can update Company by id', async () => {
+    const company = await getCompany();
+    const result = await supertest(app)
+      .put(`/api/v1/company/` + company.id)
+      .set('Authorization', `Bearer ${aksesToken}`)
+      .attach(
+        'file',
+        path.join(__dirname, '../../public/uploads/file-1699930997393.png')
+      )
+      .field('name', 'inal')
+      .field('type', 'Technology')
+      .field('description', 'this description tes')
+      .field('website', 'example.com')
+      .field('email', 'example@mail.com')
+      .field('phone_number', '0098651239')
+      .field('address', 'Jl soekarno hatta');
+  });
+
+  // it('should can update Company by id', async () => {
+  //   const company = await getCompany();
+  //   const result = await supertest(app)
+  //     .put(`/api/v1/company/` + company.id)
+  //     .set('Authorization', `Bearer ${aksesToken}`)
+  //     .send({
+  //       file: 'company.png',
+  //       name: 'test',
+  //       type: 'Technology',
+  //       description: 'this description tes',
+  //       website: 'test.com',
+  //       email: 'test@mail.com',
+  //       phone_number: '088901672341',
+  //       address: 'Jl soekarno hatta'
+  //     });
+  //   console.log(result.body)
+  //   expect(result.body.message).toBe('Seccess');
+  //   expect(result.status).toBe(200);
+  //   expect(result.body.data.name).toBe('test');
+  // });
 });
