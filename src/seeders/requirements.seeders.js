@@ -1,15 +1,11 @@
 const { RequirementModel } = require('../models');
+const logger = require('../utils/logger');
 
 const requirements = [];
 
 const createRequirement = (jobs_id, what_will_you_do, what_will_you_need) => {
-  try {
-    const requirement = { jobs_id, what_will_you_do, what_will_you_need };
-    requirements.push(requirement);
-    console.info('Requirement created successfully.');
-  } catch (error) {
-    console.error('Error creating requirement:', error);
-  }
+  const requirement = { jobs_id, what_will_you_do, what_will_you_need };
+  requirements.push(requirement);
 };
 
 createRequirement(
@@ -47,9 +43,9 @@ createRequirement(
 const seedRequirements = async () => {
   try {
     await RequirementModel.bulkCreate(requirements);
-    console.info('Requirement seed data inserted successfully.');
+    logger.info('Requirement seed data inserted successfully.');
   } catch (error) {
-    console.error('Error seeding requirement data:', error);
+    logger.error('Error seeding requirement data:', error);
   }
 };
 

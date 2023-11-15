@@ -1,3 +1,10 @@
-const companyServices = require('./company.services')
+const companyServices = require('./company.services');
 
-module.exports = { companyServices }
+const jobsServices = require('./jobs.services');
+const authService = require('./auth.services');
+
+module.exports = {
+  jobsServices,
+  authService,
+  companyServices
+};

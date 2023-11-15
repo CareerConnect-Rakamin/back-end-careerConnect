@@ -1,3 +1,10 @@
-const companyControllers = require('./company.controllers')
+const companyControllers = require('./company.controllers');
 
-module.exports = { companyControllers }
+const jobsControllers = require('./jobs.controllers');
+const authController = require('./auth.controllers');
+
+module.exports = {
+  jobsControllers,
+  authController,
+  companyControllers
+};
