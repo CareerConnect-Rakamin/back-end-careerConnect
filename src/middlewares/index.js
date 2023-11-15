@@ -1,7 +1,7 @@
-const morganMiddleware = require('./morgan.middlewares');
 const validator = require('./validator');
+const morganMiddleware = require('./morgan.middlewares');
 
 module.exports = {
-  morganMiddleware,
-  validator
+  validator,
+  morganMiddleware
 };
