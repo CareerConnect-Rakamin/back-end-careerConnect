@@ -1,9 +1,9 @@
-const companyRepositories = require('./company.repositories');
 const jobsRepositories = require('./jobs.repositories');
-const usersRepository = require('./users.repositories');
+const usersRepositories = require('./users.repositories');
+const companiesRepositories = require('./companies.repositories');
 
 module.exports = {
   jobsRepositories,
-  usersRepository,
-  companyRepositories
+  usersRepositories,
+  companiesRepositories
 };

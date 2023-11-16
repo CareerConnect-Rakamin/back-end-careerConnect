@@ -1,4 +1,4 @@
-const { companyRepositories } = require('../repositories');
+const { companiesRepositories } = require('../repositories');
 const ResponseError = require('../utils/response.error.js');
 const path = require('path');
 const fs = require('fs');
@@ -8,7 +8,7 @@ const getCompanyById = async (id) => {
     const err = new ResponseError(400, 'Id must be a number');
     throw err;
   }
-  const result = await companyRepositories.getCompanyById(id);
+  const result = await companiesRepositories.getCompanyById(id);
 
   if (!result) {
     const err = new ResponseError(404, 'Company not found');
@@ -24,14 +24,14 @@ const updateCompanyById = async (params, body, file) => {
   const { name, type, description, website, email, phone_number, address } =
     body;
 
-  const cekId = await companyRepositories.getCompanyById(id);
+  const cekId = await companiesRepositories.getCompanyById(id);
 
   if (!cekId) {
     const err = new ResponseError(404, 'Company not found');
     throw err;
   }
 
-  const data = await companyRepositories.updateCompnyById(id, {
+  const data = await companiesRepositories.updateCompnyById(id, {
     photo_profile,
     name,
     type,
@@ -67,4 +67,18 @@ const updateCompanyById = async (params, body, file) => {
   });
   return data.result;
 };
-module.exports = { getCompanyById, updateCompanyById };
+
+async function getCompanies({ page }) {
+  try {
+    const result = await companiesRepositories.getCompanies({ page });
+    return result;
+  } catch (error) {
+    throw new Error(`Error while getting companies: ${error.message}`);
+  }
+}
+
+module.exports = {
+  getCompanies,
+  getCompanyById,
+  updateCompanyById
+};
