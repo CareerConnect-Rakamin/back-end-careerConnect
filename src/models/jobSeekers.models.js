@@ -32,6 +32,9 @@ const JobSeeker = db.define(
     address: {
       type: DataTypes.TEXT
     },
+    place_of_birth: {
+      type: DataTypes.STRING(50),
+    },
     date_of_birth: {
       type: DataTypes.DATE,
       allowNull: false
