@@ -11,7 +11,7 @@ async function login(req, res) {
     if (err.message == 401) {
       res.status(401).json({
         status: 'fail',
-        message: 'Incorrct Email or Password'
+        message: 'Incorrect Email or Password'
       });
       return;
     }
