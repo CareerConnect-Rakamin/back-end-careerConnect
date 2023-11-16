@@ -17,6 +17,7 @@ const {
   requirementSeeders,
   userSeeders
 } = require('../seeders');
+const logger = require('./logger');
 
 async function migrateTables() {
   await UserModel.sync({ force: true });
@@ -43,9 +44,9 @@ async function syncDatabase() {
     await migrateTables();
     await seedData();
 
-    console.log('Database synced successfully.');
+    logger.info('Database synced successfully.');
   } catch (error) {
-    console.error('Error syncing tables:', error);
+    logger.error('Error syncing tables:', error);
   }
 }
 

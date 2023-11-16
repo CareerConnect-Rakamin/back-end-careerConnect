@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../../app');
+const app = require('../../server');
 
 describe('Get /jobs', () => {
   it('should return all jobs', async () => {

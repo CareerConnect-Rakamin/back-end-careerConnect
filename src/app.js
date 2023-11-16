@@ -1,18 +1,16 @@
-const express = require('express');
-const { api, port } = require('./config');
-const swaggerUi = require('swagger-ui-express');
-const specs = require('./utils/swagger');
-const routes = require('./routes');
-const app = express();
+const { port } = require('./config');
+const logger = require('./utils/logger');
+const app = require('./server');
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+function startServer() {
+  return app.listen(port, async () => {
+    try {
+      logger.info(`Server is listening on port ${port}`);
+    } catch (err) {
+      logger.error(`Cannot start server, error: ${err.message}`);
+      process.exit(1);
+    }
+  });
+}
 
-app.use(`/${api}`, routes);
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
-
-module.exports = app;
+startServer();
