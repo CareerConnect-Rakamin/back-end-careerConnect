@@ -1,23 +1,28 @@
 const { companiesController } = require('../controllers');
-const { authMiddlewares, uploadFileMiddleware } = require('../middlewares');
+const { authMiddleware, uploadFileMiddleware } = require('../middlewares');
 const { Router } = require('express');
 const { validator } = require('../middlewares');
+const { ROLES } = require('../utils/constants');
 
 const router = Router();
-
 const { validate, requirements } = validator;
-router.use(authMiddlewares);
-router.get('/', companiesController.getCompanies);
-router.get(
-  '/:id',
-  [validate(requirements.getCompanyById)],
-  companiesController.getCompanyById
-);
-router.put(
-  '/:id',
-  uploadFileMiddleware.single('file'),
-  [validate(requirements.updateCompanyById)],
-  companiesController.updateCompanyById
-);
+
+router.route('/').get(companiesController.getCompanies);
+
+router
+  .route('/:id')
+  .get(
+    [validate(requirements.getCompanyById)],
+    companiesController.getCompanyById
+  )
+  .put(
+    [
+      authMiddleware.authenticate,
+      uploadFileMiddleware.single('file'),
+      validate(requirements.updateCompanyById),
+      authMiddleware.authorize(ROLES.COMPANY)
+    ],
+    companiesController.updateCompanyById
+  );
 
 module.exports = router;

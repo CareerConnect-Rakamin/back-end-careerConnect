@@ -1,11 +1,11 @@
-const { usersRepository } = require('../repositories');
+const { usersRepositories } = require('../repositories');
 const { secretKey } = require('../config');
 const { compareSync } = require('bcrypt');
 const { sign } = require('jsonwebtoken');
 const { addMinutes } = require('date-fns');
 
 async function login({ email, password }) {
-  const user = await usersRepository.getUserByEmail(email);
+  const user = await usersRepositories.getUserByEmail(email);
   if (!user) {
     throw new Error(401);
   }

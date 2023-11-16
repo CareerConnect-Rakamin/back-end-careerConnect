@@ -8,6 +8,11 @@ async function getUserByEmail(email) {
   });
 }
 
+async function getUserById(id) {
+  return UserModel.findByPk(id);
+}
+
 module.exports = {
-  getUserByEmail
+  getUserByEmail,
+  getUserById
 };
