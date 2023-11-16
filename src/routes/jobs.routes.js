@@ -13,8 +13,8 @@ router
   .post(
     [
       authMiddleware.authenticate,
-      authMiddleware.authorize(ROLES.COMPANY),
-      validate(requirements.createJobs)
+      validate(requirements.createJobs),
+      authMiddleware.authorize(ROLES.COMPANY)
     ],
     jobsControllers.createJob
   );
@@ -32,16 +32,16 @@ router
   .put(
     [
       authMiddleware.authenticate,
-      authMiddleware.authorize(ROLES.COMPANY),
-      validate(requirements.updateJobs)
+      validate(requirements.updateJobs),
+      authMiddleware.authorize(ROLES.COMPANY)
     ],
     jobsControllers.updateJob
   )
   .delete(
     [
       authMiddleware.authenticate,
-      authMiddleware.authorize(ROLES.COMPANY),
-      validate(requirements.deleteJob)
+      validate(requirements.deleteJob),
+      authMiddleware.authorize(ROLES.COMPANY)
     ],
     jobsControllers.deleteJob
   );

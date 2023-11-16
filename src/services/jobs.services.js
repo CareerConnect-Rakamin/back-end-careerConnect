@@ -1,5 +1,5 @@
 const { jobsRepositories } = require('../repositories');
-const { companiesRepository } = require('../repositories');
+const { companiesRepositories } = require('../repositories');
 
 async function getJobs({ page = 1 }) {
   const jobs = await jobsRepositories.getJobs({
@@ -43,7 +43,7 @@ async function createJob({
   salary,
   capacity
 }) {
-  const user = await companiesRepository.getCompanyById(companies_id);
+  const user = await companiesRepositories.getCompanyById(companies_id);
   if (!user) {
     throw new Error(404);
   }
@@ -82,7 +82,7 @@ async function updateJob({
   capacity,
   is_open
 }) {
-  const user = await companiesRepository.getCompanyById(companies_id);
+  const user = await companiesRepositories.getCompanyById(companies_id);
   if (!user) {
     throw new Error(404);
   }
@@ -97,7 +97,7 @@ async function updateJob({
     companies_id
   });
   if (!access) {
-    throw new Error(401);
+    throw new Error(403);
   }
 
   const updateJob = await jobsRepositories.updateJob({
@@ -117,7 +117,7 @@ async function updateJob({
 }
 
 async function deleteJob({ id, companies_id }) {
-  const user = await companiesRepository.getCompanyById(companies_id);
+  const user = await companiesRepositories.getCompanyById(companies_id);
   if (!user) {
     throw new Error(404);
   }
@@ -132,7 +132,7 @@ async function deleteJob({ id, companies_id }) {
     companies_id
   });
   if (!access) {
-    throw new Error(401);
+    throw new Error(403);
   }
 
   const deleteJob = await jobsRepositories.deleteJob(id);

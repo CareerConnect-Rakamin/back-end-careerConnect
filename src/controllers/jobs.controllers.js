@@ -134,10 +134,10 @@ async function updateJob(req, res) {
         message: 'Job or User not found'
       });
     }
-    if (err.message == 401) {
-      return res.status(401).json({
+    if (err.message == 403) {
+      return res.status(403).json({
         status: 'failed',
-        message: "You doesn't have access"
+        message: "You don't have access"
       });
     }
     res.status(500).json({
@@ -164,10 +164,10 @@ async function deleteJob(req, res) {
         message: 'Job or User not found'
       });
     }
-    if (err.message == 401) {
-      return res.status(401).json({
+    if (err.message == 403) {
+      return res.status(403).json({
         status: 'failed',
-        message: "You doesn't have access"
+        message: "You don't have access"
       });
     }
     res.status(500).json({

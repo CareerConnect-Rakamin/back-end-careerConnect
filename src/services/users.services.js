@@ -1,7 +1,7 @@
-const { usersRepository } = require('../repositories');
+const { usersRepositories } = require('../repositories');
 
 async function getUserById(id) {
-  const user = await usersRepository.getUserById(id);
+  const user = await usersRepositories.getUserById(id);
 
   if (!user) {
     throw new Error(404);

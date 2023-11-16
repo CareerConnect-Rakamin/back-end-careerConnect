@@ -8,20 +8,29 @@ class AuthMiddleware {
   authenticate = async (req, res, next) => {
     const authorization = String(req.headers.authorization);
     if (!authorization || !authorization.includes('Bearer')) {
-      res.sendStatus(401);
+      res.status(401).json({
+        status: 'Failed',
+        message: 'Please login first'
+      });
       return;
     }
 
     const token = authorization?.slice(7);
     const payload = verify(token, secretKey);
     if (!payload) {
-      res.sendStatus(401);
+      res.status(401).json({
+        status: 'Failed',
+        message: 'Token has expired'
+      });
       return;
     }
 
     const user = await usersService.getUserById(payload.id);
     if (!user) {
-      res.sendStatus(401);
+      res.status(401).json({
+        status: 'Failed',
+        message: 'User not found'
+      });
       return;
     }
     req.userdata = user;
@@ -33,13 +42,19 @@ class AuthMiddleware {
     return async (req, res, next) => {
       const userdata = req.userdata;
       if (!userdata) {
-        res.sendStatus(403);
+        res.status(403).json({
+          status: 'failed',
+          message: "You don't have access"
+        });
         return;
       }
 
       const isRoleValid = roles.includes(userdata.role);
       if (!isRoleValid) {
-        res.sendStatus(403);
+        res.status(401).json({
+          status: 'failed',
+          message: "You don't have access"
+        });
         return;
       }
       next();
