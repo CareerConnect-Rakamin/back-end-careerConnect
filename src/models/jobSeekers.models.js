@@ -22,7 +22,7 @@ const JobSeeker = db.define(
       type: DataTypes.TEXT
     },
     gender: {
-      type: DataTypes.CHAR,
+      type: DataTypes.CHAR(1),
       allowNull: false
     },
     phone_number: {
