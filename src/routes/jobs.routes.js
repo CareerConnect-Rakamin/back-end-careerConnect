@@ -13,8 +13,8 @@ router
   .post(
     [
       authMiddleware.authenticate,
-      validate(requirements.createJobs),
-      authMiddleware.authorize(ROLES.COMPANY)
+      authMiddleware.authorize(ROLES.COMPANY),
+      validate(requirements.createJobs)
     ],
     jobsControllers.createJob
   );

@@ -1,4 +1,5 @@
 const { jobsServices } = require('../services');
+const logger = require('../utils/logger');
 
 async function getJobs(req, res) {
   try {
@@ -23,12 +24,13 @@ async function getJobByCompanyId(req, res) {
     if (err.message == 404) {
       return res.status(404).json({
         status: 'failed',
-        message: 'Jobs by company not found'
+        message: 'Not found'
       });
     }
+    logger.error({ status: 500, error: err });
     res.status(500).json({
-      status: 'Internal server error',
-      message: err
+      status: 'failed',
+      message: 'Internal server error'
     });
   }
 }
@@ -44,12 +46,13 @@ async function getJobById(req, res) {
     if (err.message == 404) {
       return res.status(404).json({
         status: 'failed',
-        message: 'Job not found'
+        message: 'Not found'
       });
     }
+    logger.error({ status: 500, error: err });
     res.status(500).json({
-      status: 'Internal server error',
-      message: err
+      status: 'failed',
+      message: 'Internal server error'
     });
   }
 }
@@ -83,18 +86,19 @@ async function createJob(req, res) {
     if (err.message == 404) {
       return res.status(404).json({
         status: 'failed',
-        message: 'User not found'
+        message: 'Not found'
       });
     }
-    if (err.message == 401) {
-      return res.status(401).json({
+    if (err.message == 409) {
+      return res.status(409).json({
         status: 'failed',
         message: 'Jobs already exists'
       });
     }
+    logger.error({ status: 500, error: err });
     res.status(500).json({
-      status: 'Internal server error',
-      message: err
+      status: 'failed',
+      message: 'Internal server error'
     });
   }
 }
@@ -131,7 +135,7 @@ async function updateJob(req, res) {
     if (err.message == 404) {
       return res.status(404).json({
         status: 'failed',
-        message: 'Job or User not found'
+        message: 'Not found'
       });
     }
     if (err.message == 403) {
@@ -140,9 +144,16 @@ async function updateJob(req, res) {
         message: "You don't have access"
       });
     }
+    if (err.message == 409) {
+      return res.status(409).json({
+        status: 'failed',
+        message: 'Jobs already exists'
+      });
+    }
+    logger.error({ status: 500, error: err });
     res.status(500).json({
-      status: 'Internal server error',
-      message: err
+      status: 'failed',
+      message: 'Internal server error'
     });
   }
 }
@@ -161,7 +172,7 @@ async function deleteJob(req, res) {
     if (err.message == 404) {
       return res.status(404).json({
         status: 'failed',
-        message: 'Job or User not found'
+        message: 'Not found'
       });
     }
     if (err.message == 403) {
@@ -170,9 +181,10 @@ async function deleteJob(req, res) {
         message: "You don't have access"
       });
     }
+    logger.error({ status: 500, error: err });
     res.status(500).json({
-      status: 'Internal server error',
-      message: err
+      status: 'failed',
+      message: 'Internal server error'
     });
   }
 }

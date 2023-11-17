@@ -11,7 +11,7 @@ const getCompanyById = async (id) => {
   const result = await companiesRepositories.getCompanyById(id);
 
   if (!result) {
-    const err = new ResponseError(404, 'Company not found');
+    const err = new ResponseError(404, 'Not found');
     throw err;
   }
   return result;

@@ -1,4 +1,5 @@
 const { companiesServices } = require('../services');
+const logger = require('../utils/logger');
 
 async function getCompanies(req, res) {
   try {
@@ -10,7 +11,11 @@ async function getCompanies(req, res) {
       data: result
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    logger.error({ status: 500, error: error.message });
+    res.status(500).json({
+      status: 'failed',
+      message: 'Internal server error'
+    });
   }
 }
 
@@ -19,11 +24,15 @@ const getCompanyById = async (req, res) => {
     const id = req.params.id;
     const result = await companiesServices.getCompanyById(id);
     res.json({
-      message: 'Success',
+      status: 'Success',
       data: result
     });
   } catch (err) {
-    res.status(err.status).json({ message: err.message });
+    logger.error({ status: err.status, error: err.message });
+    res.status(err.status).json({
+      status: 'failed',
+      message: err.message
+    });
   }
 };
 
