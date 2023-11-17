@@ -7,7 +7,9 @@ const { ROLES } = require('../utils/constants');
 const router = Router();
 const { validate, requirements } = validator;
 
-router.route('/').get(companiesController.getCompanies);
+router
+  .route('/')
+  .get([validate(requirements.getCompanies)], companiesController.getCompanies);
 
 router
   .route('/:id')

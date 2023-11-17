@@ -28,9 +28,15 @@ const requirements = {
   ],
   updateJobs: [
     param('jobId').isInt({ min: 1 }),
-    body('name').isString().isLength({ min: 3 }),
-    body('description').isString().isLength({ min: 3 }),
-    body('location').isString().isLength({ min: 3 }),
+    body('name').isString().isLength({ min: 3 }).optional({ nullable: true }),
+    body('description')
+      .isString()
+      .isLength({ min: 3 })
+      .optional({ nullable: true }),
+    body('location')
+      .isString()
+      .isLength({ min: 3 })
+      .optional({ nullable: true }),
     body('category')
       .isString()
       .isIn([
@@ -44,8 +50,12 @@ const requirements = {
         'Engineering',
         'Customer_Service',
         'Human_Resources'
-      ]),
-    body('job_type').isString().isIn(['WFH', 'WFO']),
+      ])
+      .optional({ nullable: true }),
+    body('job_type')
+      .isString()
+      .isIn(['WFH', 'WFO'])
+      .optional({ nullable: true }),
     body('salary').isInt({ min: 1000 }).default(0).optional({ nullable: true }),
     body('capacity').isInt({ min: 1 }).default(0).optional({ nullable: true }),
     body('is_open').isBoolean().default(true).optional({ nullable: true })

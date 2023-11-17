@@ -2,6 +2,7 @@ const { validationResult } = require('express-validator');
 const companyRequirements = require('./company.requirements');
 const jobsRequirements = require('./jobs.requirements');
 const authRequirements = require('./auth.requirements');
+const logger = require('../../utils/logger');
 
 const requirements = {
   ...jobsRequirements,
@@ -16,11 +17,10 @@ function validate(validations) {
     if (errors.isEmpty()) {
       return next();
     }
-
+    logger.error({ error: errors.array() });
     return res.status(400).json({
-      status: 'Failed',
-      message: 'Invalid input',
-      errors: errors.array()
+      status: 'failed',
+      message: 'Invalid input'
     });
   };
 }
