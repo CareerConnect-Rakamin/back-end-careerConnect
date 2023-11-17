@@ -19,9 +19,7 @@ async function login({ email, password }) {
   const authUser = { id: user.dataValues.id, exp: expiresIn };
   const token = sign(authUser, secretKey);
 
-  return {
-    token
-  };
+  return token;
 }
 
 module.exports = {
