@@ -11,7 +11,7 @@ const Application = db.define(
       primaryKey: true,
       references: {
         model: JobSeeker,
-        key: 'id'
+        key: 'jobseekers_id'
       }
     },
     jobs_id: {

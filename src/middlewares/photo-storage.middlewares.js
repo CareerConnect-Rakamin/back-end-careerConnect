@@ -21,12 +21,7 @@ const imageFilter = (req, file, cb) => {
   if (extname && mimetype) {
     cb(null, true);
   } else {
-    cb(
-      new Error(
-        'Invalid file type. Only JPEG, JPG, and PNG files are allowed.'
-      ),
-      false
-    );
+    cb(null, false); // Reject the file silently
   }
 };
 

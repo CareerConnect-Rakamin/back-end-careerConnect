@@ -1,4 +1,5 @@
 const { PhotoService } = require('../services');
+const logger = require('../utils/logger');
 
 const UploadPhoto = async (req, res) => {
   const id = req.params.id;
@@ -7,11 +8,14 @@ const UploadPhoto = async (req, res) => {
   try {
     const file = `public/uploads/${id}/${fileName}`;
     const result = await PhotoService.UpdatePhoto({ id, photo_profile: file });
-    if (result) {
-      res.status(200).json({ message: 'Photo Uploaded successfully...', data : result });
-    }
+    res
+      .status(200)
+      .json({ status: 'Success', message: 'Photo Uploaded successfully' });
   } catch (error) {
-    res.status(500).send(error.message);
+    logger.error(error.message);
+    res
+      .status(500)
+      .send({ status: 'failed', message: 'Internal server error' });
   }
 };
 
@@ -22,7 +26,7 @@ const DeletePhoto = async (req, res) => {
     if (result) {
       res
         .status(200)
-        .json({ message: 'Photo Deleted successfully...', data : result });
+        .json({ status: 'Success', message: 'Photo Deleted successfully' });
     }
   } catch (error) {
     res.status(500).send(error.message);

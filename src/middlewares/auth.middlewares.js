@@ -60,6 +60,19 @@ class AuthMiddleware {
       next();
     };
   };
+
+  verifyUser = async (req, res, next) => {
+    const { id } = req.params;
+    const userdata = req.userdata;
+    if (userdata.id != id) {
+      res.status(403).json({
+        status: 'failed',
+        message: "You don't have access"
+      });
+      return;
+    }
+    next();
+  };
 }
 
 module.exports = AuthMiddleware;

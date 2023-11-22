@@ -15,7 +15,7 @@ const Certificate = db.define(
       type: DataTypes.INTEGER,
       references: {
         model: JobSeeker,
-        key: 'id'
+        key: 'jobseekers_id'
       }
     },
     name: {

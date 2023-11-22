@@ -1,50 +1,38 @@
 const { JobSeekerModel } = require('../models');
 
-const UpdatePhoto = (params) => {
-  return new Promise(async (resolve, reject) => {
-    const { id, photo_profile } = params;
-    try {
-      const uploadPhoto = await JobSeekerModel.update(
-        {
-          photo_profile: photo_profile
-        },
-        {
-          where: {
-            id: id
-          }
-        }
-      );
-      resolve(uploadPhoto);
-    } catch (error) {
-      reject(error);
+const UpdatePhoto = async (params) => {
+  const { id, photo_profile } = params;
+  const uploadPhoto = await JobSeekerModel.update(
+    {
+      photo_profile: photo_profile
+    },
+    {
+      where: {
+        jobseekers_id: id
+      }
     }
-  });
+  );
+  return uploadPhoto;
 };
 
-const DeletePhoto = (params) => {
-  return new Promise(async (resolve, reject) => {
-    const id = params;
-    let fileName = '';
-    const findData = await JobSeekerModel.findByPk(id);
-    try {
-      if (findData.gender === 'M') {
-        fileName = 'public/uploads/default/man.png';
-      } else if (findData.gender === 'F') {
-        fileName = 'public/uploads/default/woman.png';
-      }
-      const deletePhoto = await JobSeekerModel.update(
-        {
-          photo_profile: fileName
-        },
-        {
-          where: { id: id }
-        }
-      );
-      resolve(deletePhoto);
-    } catch (error) {
-      reject(error);
+const DeletePhoto = async (params) => {
+  const id = params;
+  let fileName = '';
+  const findData = await JobSeekerModel.findByPk(id);
+  if (findData.gender === 'M') {
+    fileName = 'public/uploads/default/man.png';
+  } else if (findData.gender === 'F') {
+    fileName = 'public/uploads/default/woman.png';
+  }
+  const deletePhoto = await JobSeekerModel.update(
+    {
+      photo_profile: fileName
+    },
+    {
+      where: { id: id }
     }
-  });
+  );
+  return deletePhoto;
 };
 
 module.exports = {

@@ -1,4 +1,7 @@
-const { CompanyModel } = require('../models');
+const { CompanyModel, UserModel } = require('../models');
+const bcrypt = require('bcrypt');
+const logger = require('../utils/logger');
+const { col } = require('sequelize');
 
 async function getCompanies({ page }) {
   try {
@@ -13,51 +16,113 @@ async function getCompanies({ page }) {
 }
 
 const getCompanyById = async (id) => {
-  const result = await CompanyModel.findByPk(id);
+  const result = await CompanyModel.findByPk(id, {
+    attributes: [
+      'companies_id',
+      [col(`user.email`), 'email'],
+      [col(`user.role`), 'role'],
+      'photo_profile',
+      'name',
+      'type',
+      'description',
+      'website',
+      'email_company',
+      'phone_number',
+      'address'
+    ],
+    include: [
+      {
+        model: UserModel,
+        attributes: [],
+        as: 'user'
+      }
+    ],
+    where: {
+      id: id
+    }
+  });
   return result;
 };
 
-const updateCompnyById = async (
-  id,
-  {
-    photo_profile,
+const updateCompanyById = async (id, data) => {
+  const {
+    email,
+    password,
     name,
     type,
     description,
     website,
-    email,
+    email_company,
     phone_number,
     address
+  } = data;
+  if (password) {
+    const password = await bcrypt.hash(password, 10);
   }
-) => {
-  const getOldPhoto = await await CompanyModel.findByPk(id);
-
-  const oldPhoto = getOldPhoto.photo_profile;
-
-  const result = await CompanyModel.update(
+  await UserModel.update(
     {
-      photo_profile,
+      email,
+      password
+    },
+    {
+      where: {
+        id: id
+      }
+    }
+  );
+
+  await CompanyModel.update(
+    {
       name,
       type,
       description,
       website,
-      email,
+      email_company,
       phone_number,
       address
     },
     {
       where: {
-        id: id
-      },
-      returning: true
+        companies_id: id
+      }
     }
   );
-  const data = { result, oldPhoto };
-  return data;
+};
+
+const createCompany = async (params) => {
+  const { email, password, role } = params;
+  const {
+    photo_profile,
+    name,
+    type,
+    address,
+    phoneNumber,
+    website,
+    companyEmail
+  } = params;
+
+  const newUser = await UserModel.create({
+    email: email,
+    password,
+    role
+  });
+
+  const id = newUser.id;
+  await CompanyModel.create({
+    companies_id: id,
+    photo_profile,
+    name,
+    email_company: companyEmail,
+    type,
+    address,
+    phone_number: phoneNumber,
+    website
+  });
 };
 
 module.exports = {
   getCompanies,
   getCompanyById,
-  updateCompnyById
+  updateCompanyById,
+  createCompany
 };

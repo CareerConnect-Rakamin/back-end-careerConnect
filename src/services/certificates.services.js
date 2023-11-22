@@ -1,24 +1,17 @@
-const { CertificatesRepo } = require('../repositories');
+const { CertificatesRepo, usersRepositories } = require('../repositories');
 
-const AddCeritificates = async (data) => {
-  const { id, name, path } = data;
-  if (!id) {
-    return Promise.reject(new Error('Invalid id...'));
-  } else if (!name && !path) {
-    return Promise.reject(new Error('Some value null...'));
+const AddCeritificates = async (id, data) => {
+  const user = usersRepositories.getUserById(id);
+  if (!user) {
+    throw new Error('Not Found');
   }
-  const addCertificate = await CertificatesRepo.AddCeritificates({
-    id,
-    name,
-    path
-  });
-  return addCertificate;
+  await CertificatesRepo.AddCeritificates(id, data);
 };
 
 const UpdateCertificates = async (data) => {
   const { id, name, path, oldPath } = data;
   if (!id) {
-    return Promise.reject(new Error('Invalid id...'));
+    throw new Error('Invalid id');
   }
   const updateCertificate = CertificatesRepo.UpdateCertificates({
     id,
@@ -29,16 +22,12 @@ const UpdateCertificates = async (data) => {
   return updateCertificate;
 };
 
-const DeleteCertificates = async (data) => {
-  const { id, oldPath } = data;
-  if (!id) {
-    return Promise.reject(new Error('Invalid id...'));
+const DeleteCertificates = async (id, userId) => {
+  const certificate = await CertificatesRepo.getCertificateById(id, userId);
+  if (!certificate) {
+    throw new Error(404);
   }
-  const deleteCertificates = await CertificatesRepo.DeleteCertificates({
-    id,
-    oldPath
-  });
-  return deleteCertificates;
+  await CertificatesRepo.DeleteCertificates(id, userId);
 };
 
 module.exports = {

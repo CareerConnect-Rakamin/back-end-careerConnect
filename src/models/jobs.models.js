@@ -15,7 +15,7 @@ const Job = db.define(
       type: DataTypes.INTEGER,
       references: {
         model: Company,
-        key: 'id'
+        key: 'companies_id'
       }
     },
     name: {
