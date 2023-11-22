@@ -9,14 +9,12 @@ const uploadPath = path.join(__dirname, '../../public/uploads');
 const { validate, requirements } = validator;
 
 router.put(
-  '/:id',
+  '/',
   authMiddleware.authenticate,
-  authMiddleware.verifyUser,
   upload.single('file'),
   [validate(requirements.editPhotoProfile)],
   PhotoControllers.UploadPhoto
 );
-router.delete('/:id', PhotoControllers.DeletePhoto);
 
 // untuk mengambil foto profil, menggunakan format localhost:3000/api/v1/profile/photo/{id user}/{nama file foto}
 router.use('/photo/:id', (req, res, next) => {
