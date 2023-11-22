@@ -29,18 +29,17 @@ router.put(
 );
 
 router.put(
-  '/cv/:id',
+  '/profile/cv',
   authMiddleware.authenticate,
-  authMiddleware.verifyUser,
   authMiddleware.authorize(ROLES.JOBSEEKER),
   uploadCV.single('file'),
   CVControllers.UpdateCV
 );
 
 router.delete(
-  '/cv/:id',
+  '/profile/cv',
   authMiddleware.authenticate,
-  authMiddleware.verifyUser,
+  authMiddleware.authorize(ROLES.JOBSEEKER),
   CVControllers.DeleteCV
 );
 
@@ -63,7 +62,7 @@ router.delete(
 router.use('/certificates/:id/:filename', (req, res) => {
   const filePath = path.join(
     uploadPath,
-    req.params.id,
+    req.userdata.id,
     '/certificates',
     req.params.filename
   );
@@ -77,8 +76,8 @@ router.use('/certificates/:id/:filename', (req, res) => {
 
 // untuk melihat data CV yang sudah diupload dengan format : id berdasarkan id user yang mengupload CV
 // setelah itu nama file dari CVnya. contoh : localhost:3000/profile/cv/15/{nama CV}
-router.use('/cv/:id', (req, res, next) => {
-  express.static(path.join(uploadPath, req.params.id))(req, res, next);
+router.use('/cv', (req, res, next) => {
+  express.static(path.join(uploadPath, req.userdata.id))(req, res, next);
 });
 
 module.exports = router;
