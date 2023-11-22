@@ -106,9 +106,15 @@
  *                      data:
  *                          type: object
  *                          properties:
- *                                  id:
+ *                                  companies_id:
  *                                      type: integer
  *                                      example: 2
+ *                                  email:
+ *                                      type: string
+ *                                      example: company0@company.com
+ *                                  role:
+ *                                      type: string
+ *                                      example: company
  *                                  photo_profile:
  *                                      type: string
  *                                      example: "public/uploads/default/company.png"
@@ -124,7 +130,7 @@
  *                                  website:
  *                                      type: string
  *                                      example: "www.techcompany.com"
- *                                  email:
+ *                                  email_company:
  *                                      type: string
  *                                      example: "techcompany@gmail.com"
  *                                  phone_number:
@@ -133,14 +139,6 @@
  *                                  address:
  *                                      type: string
  *                                      example: "Jakarta, Wakanda"
- *                                  createdAt:
- *                                      type: string
- *                                      format: date-time
- *                                      example: "2023-11-16T16:23:00.902Z"
- *                                  updatedAt:
- *                                      type: string
- *                                      format: date-time
- *                                      example: "2023-11-16T16:23:00.902Z"
  *       '400':
  *          $ref: '#/components/responses/InvalidInput'
  *       '404':
@@ -170,43 +168,52 @@
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/company'
- *           example:
- *               - file: "photo-profile.png"
- *                 name: "Company name"
- *                 type: "Technology"
- *                 description: "this company into to startup un unicorn"
- *                 website: "company.com"
- *                 email: "company@mail.com"
- *                 phone_number: "099890265281"
- *                 address: "Jl soekarno hatta"
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: company@mail.com
+ *               password:
+ *                 type: string
+ *                 example: newpassword123
+ *               name:
+ *                 type: string
+ *                 example: newNameTechComp
+ *               type:
+ *                 example: Technology
+ *               email_company:
+ *                 type: string
+ *                 example: work@email.com
+ *               website:
+ *                 type: string
+ *                 example: www.newwebiste.com
+ *               phone_number:
+ *                 type: string
+ *                 example: 0856789012312
+ *               address:
+ *                 type: string
+ *                 example: Surabaya, Wakanda
  *     responses:
  *       '200':
  *         description: OK
  *         content:
  *           application/json:
- *             example:
- *               - message: "Succes"
- *               - id: 1
- *                 file: "file-1699837993051.png"
- *                 name: "Company name"
- *                 type: "Technology|Healthcare|Finance|Education|Retail|Entertainment|Manufacturing|Consulting|Energy"
- *                 description: "sedang di update"
- *                 website: "company.com"
- *                 email: "company@mail.com"
- *                 phone_number: "099890265281"
- *                 address: "Jl soekarno hatta"
- *                 createdAt: "2023-11-11T07:21:10.716Z"
- *                 updatedAt: "2023-11-13T01:13:13.118Z"
- *       '400':
- *          description: Bad request
- *          content:
- *            application/json:
- *              example:
- *                - message: "Invalid form"
- *       '401':
+ *             schema:
+ *                  type: object
+ *                  properties:
+ *                    status:
+ *                      type: string
+ *                      example: Success
+ *                    data:
+ *                      example: Data Profile successfully updated
+ *
+ *       400:
+ *          $ref: '#/components/responses/InvalidInput'
+ *       401:
  *         $ref: '#/components/responses/InvalidToken'
- *       '404':
+ *       403:
+ *         $ref: '#/components/responses/PermissionDenied'
+ *       404:
  *         $ref: '#/components/responses/NotFound'
  *       500:
  *         $ref: '#/components/responses/InternalServerError'
