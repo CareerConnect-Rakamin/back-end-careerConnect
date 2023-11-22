@@ -150,4 +150,67 @@
  *           minimum: 1
  *           description: Capacity for the job
  *           example: 15
+ *     jobseeker:
+ *       type: object
+ *       properties:
+ *         jobseekers_id:
+ *           type: integer
+ *           description: User ID
+ *           example: 1
+ *         email:
+ *           type: string
+ *           description: User email
+ *           example: jobseeker0@gmail.com
+ *         role:
+ *           type: string
+ *           description: User role
+ *           example: jobseeker
+ *         photo_profile:
+ *           type: string
+ *           description: Path to the user's photo profile
+ *           example: public/uploads/default/man.png
+ *         full_name:
+ *           type: string
+ *           description: User's full name
+ *           example: John Doe
+ *         bio:
+ *           type: string
+ *           description: Bio of the user as a job seeker
+ *           example: Bio of me as Job Seeker
+ *         gender:
+ *           type: string
+ *           description: User's gender
+ *           example: M
+ *         phone_number:
+ *           type: string
+ *           description: User's phone number
+ *           example: +6281312345565
+ *         address:
+ *           type: string
+ *           description: User's address
+ *           example: Jln. Abal-abal, Jakarta, Wakanda
+ *         place_of_birth:
+ *           type: string
+ *           nullable: true
+ *           description: User's place of birth
+ *           example: null
+ *         date_of_birth:
+ *           type: string
+ *           format: date-time
+ *           description: User's date of birth
+ *           example: 2000-07-11T16:00:00.000Z
+ *         cv_path:
+ *           type: string
+ *           nullable: true
+ *           description: Path to the user's CV
+ *           example: null
+ *         portfolio_path:
+ *           type: string
+ *           nullable: true
+ *           description: Path to the user's portfolio
+ *           example: null
+ *         on_work:
+ *           type: boolean
+ *           description: Indicates if the user is currently on work
+ *           example: false
  */
