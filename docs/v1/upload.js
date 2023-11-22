@@ -13,9 +13,9 @@
 
 /**
  * @swagger
- * /profile/photo/{id}:
+ * /photo:
  *  put:
- *    summary: Update the photo profile of any user by id
+ *    summary: Update the photo profile of any user
  *    description: Update photo by user id
  *    tags: [Files]
  *    security:
@@ -72,20 +72,13 @@
 
 /**
  * @swagger
- * /jobseekers/cv/{id}:
+ * /jobseekers/profile/cv:
  *  put:
- *    summary: Update the CV profile of any user by id
- *    description: Update CV by user id
+ *    summary: Update the CV profile
+ *    description: Update CV
  *    tags: [Files]
  *    security:
  *       - bearerAuth: []
- *    parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: integer
- *           minimum: 1
- *         description: id of user to update CV profile
  *    requestBody:
  *      required: true
  *      content:
