@@ -20,13 +20,6 @@
  *    tags: [Files]
  *    security:
  *       - bearerAuth: []
- *    parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: integer
- *           minimum: 1
- *         description: id of user to update photo profile
  *    requestBody:
  *      required: true
  *      content:
