@@ -22,7 +22,7 @@ const JobSeeker = db.define(
       type: DataTypes.TEXT
     },
     gender: {
-      type: DataTypes.CHAR,
+      type: DataTypes.CHAR(1),
       allowNull: false
     },
     phone_number: {
@@ -33,7 +33,7 @@ const JobSeeker = db.define(
       type: DataTypes.TEXT
     },
     place_of_birth: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(50)
     },
     date_of_birth: {
       type: DataTypes.DATE,

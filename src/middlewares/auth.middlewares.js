@@ -1,25 +1,65 @@
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
+const { verify } = require('jsonwebtoken');
+const { secretKey } = require('../config');
+const { usersService } = require('../services');
 
-const key = process.env.JWT_SECRET;
+class AuthMiddleware {
+  constructor() {}
 
-async function authorization(req, res, next) {
-  try {
-    const aksesToken = req.header('Authorization');
-
-    if (!aksesToken || !aksesToken.startsWith('Bearer ')) {
-      return res.status(400).json({
-        message: 'Silahkan login terlebih dahulu'
+  authenticate = async (req, res, next) => {
+    const authorization = String(req.headers.authorization);
+    if (!authorization || !authorization.includes('Bearer')) {
+      res.status(401).json({
+        status: 'failed',
+        message: 'Invalid Token'
       });
+      return;
     }
-    const token = aksesToken.slice(7);
-    const aksesTokenPayload = jwt.verify(token, key);
+
+    const token = authorization?.slice(7);
+    const payload = verify(token, secretKey);
+    if (!payload) {
+      res.status(401).json({
+        status: 'failed',
+        message: 'Invalid Token'
+      });
+      return;
+    }
+
+    const user = await usersService.getUserById(payload.id);
+    if (!user) {
+      res.status(404).json({
+        status: 'failed',
+        message: 'User not found'
+      });
+      return;
+    }
+    req.userdata = user;
+
     next();
-  } catch (err) {
-    return res.status(401).json({
-      message: 'Token akses tidak valid atau kedaluwarsa.'
-    });
-  }
+  };
+
+  authorize = (...roles) => {
+    return async (req, res, next) => {
+      const userdata = req.userdata;
+      if (!userdata) {
+        res.status(403).json({
+          status: 'failed',
+          message: "You don't have access"
+        });
+        return;
+      }
+
+      const isRoleValid = roles.includes(userdata.role);
+      if (!isRoleValid) {
+        res.status(403).json({
+          status: 'failed',
+          message: "You don't have access"
+        });
+        return;
+      }
+      next();
+    };
+  };
 }
 
-module.exports = authorization;
+module.exports = AuthMiddleware;
