@@ -1,7 +1,10 @@
-const { companiesRepositories } = require('../repositories');
+const { companiesRepositories, usersRepositories } = require('../repositories');
 const ResponseError = require('../utils/response.error.js');
+const bcrypt = require('bcrypt');
 const path = require('path');
 const fs = require('fs');
+const { error } = require('console');
+const logger = require('../utils/logger.js');
 
 const getCompanyById = async (id) => {
   if (isNaN(Number(id))) {
@@ -17,55 +20,14 @@ const getCompanyById = async (id) => {
   return result;
 };
 
-const updateCompanyById = async (params, body, file) => {
-  const { filename: photo_profile } = file;
-  const { id } = params;
+const updateCompanyById = async (id, data) => {
+  const company = await companiesRepositories.getCompanyById(id);
 
-  const { name, type, description, website, email, phone_number, address } =
-    body;
-
-  const cekId = await companiesRepositories.getCompanyById(id);
-
-  if (!cekId) {
+  if (!company) {
     const err = new ResponseError(404, 'Company not found');
     throw err;
   }
-
-  const data = await companiesRepositories.updateCompnyById(id, {
-    photo_profile,
-    name,
-    type,
-    description,
-    website,
-    email,
-    phone_number,
-    address
-  });
-
-  if (!data) {
-    const err = new ResponseError(500, 'Internal server error');
-    throw err;
-  }
-
-  // mencari path photo lama
-  const filePath = path.join(
-    __dirname,
-    '../../public/uploads/photo_profile',
-    data.oldPhoto
-  );
-
-  fs.access(filePath, fs.constants.F_OK, (err) => {
-    if (!err) {
-      // jika foto lama ada, hapus
-      fs.unlink(filePath, (err) => {
-        if (err) {
-          console.error('Error deleting old photo:', err);
-          throw (err = new ResponseError(500, 'Internal server error'));
-        }
-      });
-    }
-  });
-  return data.result;
+  await companiesRepositories.updateCompanyById(id, data);
 };
 
 async function getCompanies({ page }) {

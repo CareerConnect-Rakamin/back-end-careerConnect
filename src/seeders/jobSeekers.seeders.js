@@ -4,7 +4,7 @@ const logger = require('../utils/logger');
 const jobseekers = [];
 
 const createJobSeeker = (
-  id,
+  jobseekers_id,
   photo_profile,
   full_name,
   bio,
@@ -13,11 +13,11 @@ const createJobSeeker = (
   address,
   date_of_birth,
   cv_path,
-  portfolio_path,
+  link_portfolio,
   on_work
 ) => {
   const jobseeker = {
-    id,
+    jobseekers_id,
     photo_profile,
     full_name,
     bio,
@@ -26,7 +26,7 @@ const createJobSeeker = (
     address,
     date_of_birth,
     cv_path,
-    portfolio_path,
+    link_portfolio,
     on_work
   };
   jobseekers.push(jobseeker);

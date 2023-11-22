@@ -111,7 +111,7 @@
  *                    status:
  *                      example: failed
  *                    message:
- *                      example: Jobs already exists
+ *                      example: Job already exist
  *       500:
  *         $ref: '#/components/responses/InternalServerError'
  */

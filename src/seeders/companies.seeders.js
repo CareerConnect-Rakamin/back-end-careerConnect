@@ -4,24 +4,24 @@ const logger = require('../utils/logger');
 const companies = [];
 
 const createCompany = (
-  id,
+  companies_id,
   photo_profile,
   name,
   type,
   description,
   website,
-  email,
+  email_company,
   phone_number,
   address
 ) => {
   const company = {
-    id,
+    companies_id,
     photo_profile,
     name,
     type,
     description,
     website,
-    email,
+    email_company,
     phone_number,
     address
   };

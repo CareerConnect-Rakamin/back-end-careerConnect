@@ -5,10 +5,14 @@ const User = require('./users.models');
 const Company = db.define(
   'companies',
   {
-    id: {
+    companies_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      allowNull: false
+      allowNull: false,
+      references: {
+        model: User,
+        key: 'id'
+      }
     },
     photo_profile: {
       type: DataTypes.STRING(255),
@@ -38,7 +42,7 @@ const Company = db.define(
     website: {
       type: DataTypes.STRING(255)
     },
-    email: {
+    email_company: {
       type: DataTypes.STRING(255),
       allowNull: false,
       unique: true
@@ -58,6 +62,6 @@ const Company = db.define(
   }
 );
 
-Company.belongsTo(User, { foreignKey: 'id' });
+Company.belongsTo(User, { foreignKey: 'companies_id' });
 
 module.exports = Company;

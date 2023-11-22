@@ -37,20 +37,24 @@ const getCompanyById = async (req, res) => {
 };
 
 const updateCompanyById = async (req, res) => {
+  const id = req.params.id;
   try {
-    const result = await companiesServices.updateCompanyById(
-      req.params,
-      req.body,
-      req.file
-    );
-    res.json({
+    const result = await companiesServices.updateCompanyById(id, req.body);
+    res.status(200).json({
       message: 'Success',
-      data: result[1]
+      data: 'Data Profile successfully updated'
     });
   } catch (err) {
-    res.status(err.status).json({ message: err.message });
+    if (err.status) {
+      res.status(err.status).json({ status: 'failed', message: err.message });
+    }
+    logger.error(err);
+    res
+      .status(err.status)
+      .json({ status: 'failed', message: 'Internal server error' });
   }
 };
+
 module.exports = {
   getCompanies,
   getCompanyById,

@@ -5,10 +5,14 @@ const User = require('./users.models');
 const JobSeeker = db.define(
   'jobseekers',
   {
-    id: {
+    jobseekers_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      allowNull: false
+      allowNull: false,
+      references: {
+        model: User,
+        key: 'id'
+      }
     },
     photo_profile: {
       type: DataTypes.STRING(255),
@@ -32,6 +36,9 @@ const JobSeeker = db.define(
     address: {
       type: DataTypes.TEXT
     },
+    place_of_birth: {
+      type: DataTypes.STRING(50)
+    },
     date_of_birth: {
       type: DataTypes.DATE,
       allowNull: false
@@ -39,7 +46,7 @@ const JobSeeker = db.define(
     cv_path: {
       type: DataTypes.STRING(255)
     },
-    portfolio_path: {
+    link_portfolio: {
       type: DataTypes.STRING(255)
     },
     on_work: {
@@ -55,6 +62,6 @@ const JobSeeker = db.define(
   }
 );
 
-JobSeeker.belongsTo(User, { foreignKey: 'id' });
+JobSeeker.belongsTo(User, { foreignKey: 'jobseekers_id' });
 
 module.exports = JobSeeker;

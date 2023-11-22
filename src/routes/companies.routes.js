@@ -20,9 +20,8 @@ router
   .put(
     [
       authMiddleware.authenticate,
-      uploadFileMiddleware.single('file'),
       validate(requirements.updateCompanyById),
-      authMiddleware.authorize(ROLES.COMPANY)
+      authMiddleware.verifyUser
     ],
     companiesController.updateCompanyById
   );
