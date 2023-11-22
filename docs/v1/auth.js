@@ -7,8 +7,8 @@
 /**
  * @swagger
  * tags:
- *   name: Users
- *   description: API operations related to users
+ *   name: Auth
+ *   description: API operations related to Auth process
  */
 
 /**
@@ -16,7 +16,7 @@
  * /auth/login:
  *   post:
  *     summary: Login Process
- *     tags: [Users]
+ *     tags: [Auth]
  *     requestBody:
  *       required: true
  *       content:
@@ -27,7 +27,7 @@
  *               email:
  *                 example: user@gmail.com
  *               password:
- *                 example: password
+ *                 example: password123
  *     responses:
  *       200:
  *         description: Successfully Login
@@ -64,6 +64,122 @@
  *                   example: Incorrect Email or Password
  *       405:
  *         $ref: '#/components/responses/MethodNotAllowed'
+ *       500:
+ *         $ref: '#/components/responses/InternalServerError'
+ */
+
+/**
+ * @swagger
+ * /auth/register/jobseeker:
+ *   post:
+ *     summary: Register as JobSeeker
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 example: user@gmail.com
+ *               password:
+ *                 example: password
+ *               full_name:
+ *                 example: User Nama Lengkap
+ *               gender:
+ *                 example: M
+ *               place_of_birth:
+ *                 example: Pandeglang
+ *               date_of_birth:
+ *                 example: 02-02-2002
+ *     responses:
+ *       200:
+ *         description: Successfully Register
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   example: Success
+ *                 message:
+ *                   example: Successfully Register
+ *       400:
+ *         $ref: '#/components/responses/InvalidInput'
+ *       405:
+ *         $ref: '#/components/responses/MethodNotAllowed'
+ *       '409':
+ *         description: Already exist
+ *         content:
+ *           application/json:
+ *             schema:
+ *                type: object
+ *                properties:
+ *                    status:
+ *                      example: failed
+ *                    message:
+ *                      example: Email already exist
+ *       500:
+ *         $ref: '#/components/responses/InternalServerError'
+ */
+
+/**
+ * @swagger
+ * /auth/register/company:
+ *   post:
+ *     summary: Register as Company
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 example: tech@gmail.com
+ *               password:
+ *                 example: password312
+ *               name:
+ *                 example: Tech Comp
+ *               type:
+ *                 example: Technology
+ *               address:
+ *                 example: Jln. Cuma dibuat aja
+ *               phone_number:
+ *                 example: "0852826242323"
+ *               website:
+ *                 example: www.techlagi.com
+ *               companyEmail:
+ *                 example: techwork@gmail.com
+ *     responses:
+ *       200:
+ *         description: Successfully Register
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   example: Success
+ *                 message:
+ *                   example: Successfully Register
+ *       400:
+ *         $ref: '#/components/responses/InvalidInput'
+ *       405:
+ *         $ref: '#/components/responses/MethodNotAllowed'
+ *       '409':
+ *         description: Already exist
+ *         content:
+ *           application/json:
+ *             schema:
+ *                type: object
+ *                properties:
+ *                    status:
+ *                      example: failed
+ *                    message:
+ *                      example: Email already exist
  *       500:
  *         $ref: '#/components/responses/InternalServerError'
  */
