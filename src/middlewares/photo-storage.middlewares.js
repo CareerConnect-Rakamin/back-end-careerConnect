@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 
 const PhotoStorage = (req, file, cb) => {
-  const id = req.params.id;
+  const id = req.userdata.id;
   const userUploadPath = path.join(__dirname, `../../public/uploads/${id}`);
   if (!fs.existsSync(userUploadPath)) {
     fs.mkdirSync(userUploadPath);

@@ -2,7 +2,7 @@ const { PhotoService } = require('../services');
 const logger = require('../utils/logger');
 
 const UploadPhoto = async (req, res) => {
-  const id = req.params.id;
+  const id = req.userdata.id;
   const fileDirr = req.file.path;
   const fileName = req.file.filename;
   try {
