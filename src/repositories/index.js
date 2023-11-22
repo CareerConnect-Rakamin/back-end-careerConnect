@@ -6,7 +6,6 @@ const CVRepo = require('./CV.repositories');
 const CertificatesRepo = require('./certificates.repositories');
 const PhotoRepo = require('./photo-profile.repositories');
 
-
 module.exports = {
   jobsRepositories,
   usersRepositories,
