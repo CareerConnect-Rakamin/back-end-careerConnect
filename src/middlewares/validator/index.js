@@ -23,8 +23,7 @@ function validate(validations) {
     }
     logger.error({ error: errors.array() });
 
-    // Check if the error is related to file upload
-    const error = errors.array()[0].msg; // Get the first error message
+    const error = errors.array()[0].msg;
 
     if (error === 'No file uploaded or file type is incorrect') {
       return res.status(400).json({
