@@ -1,10 +1,33 @@
-const { JobModel } = require('../models');
+const { col } = require('sequelize');
+const { JobModel, CompanyModel } = require('../models');
 
 async function getJobs({ page }) {
   const offset = (page - 1) * 12;
   return JobModel.findAll({
+    attributes: [
+      'id',
+      'companies_id',
+      [col('company.name'), 'company_name'],
+      [col('company.photo_profile'), 'company_photo'],
+      'name',
+      'description',
+      'location',
+      'category',
+      'job_type',
+      'salary',
+      'capacity',
+      'is_open'
+    ],
     offset,
-    limit: 12
+    limit: 12,
+    include: [
+      {
+        model: CompanyModel,
+        required: true,
+        attributes: [],
+        as: 'company'
+      }
+    ]
   });
 }
 

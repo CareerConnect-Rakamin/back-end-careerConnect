@@ -84,7 +84,7 @@ const createCompany = async ({
     throw new Error('Email already exist');
   }
 
-  const photo_profile = 'public/uploads/default/company.png';
+  const photo_profile = 'photo/default/company.png';
   const role = 'company';
   const hashedPass = await bcrypt.hash(password, 10);
   const input = {
