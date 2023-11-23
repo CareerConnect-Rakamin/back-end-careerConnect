@@ -30,7 +30,7 @@ const createCompany = (
 
 createCompany(
   2,
-  'public/uploads/default/company.png',
+  'photo/default/company.png',
   'TechCompany',
   'Technology',
   'This is our TechCompany',
@@ -41,7 +41,7 @@ createCompany(
 );
 createCompany(
   4,
-  'public/uploads/default/company.png',
+  'photo/default/company.png',
   'HealthCare',
   'Healthcare',
   'This is our HealthCare Company',
@@ -52,7 +52,7 @@ createCompany(
 );
 createCompany(
   6,
-  'public/uploads/default/company.png',
+  'photo/default/company.png',
   'MakinPaper',
   'Manufacturing',
   'This is our Making Paper Company',

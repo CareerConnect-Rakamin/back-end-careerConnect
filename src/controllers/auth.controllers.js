@@ -31,9 +31,9 @@ const registerJobSeeker = async (req, res) => {
   const role = 'jobseeker';
   var photo = '';
   if (gender == 'M') {
-    photo = 'public/default/man.png';
+    photo = 'photo/default/man.png';
   } else {
-    photo = 'public/default/woman.png';
+    photo = 'photo/default/woman.png';
   }
 
   try {
@@ -87,18 +87,8 @@ const registerCompany = async (req, res) => {
   }
 };
 
-const logout = (req, res) => {
-  res.cookie('jwt', 'loggedOut', {
-    expires: new Date(Date.now() + 10 * 1000),
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production' ? true : false
-  });
-  res.status(200).json({ status: 'success' });
-};
-
 module.exports = {
   login,
-  logout,
   registerJobSeeker,
   registerCompany
 };

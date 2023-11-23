@@ -59,7 +59,7 @@ router.delete(
   CertificatesControllers.DeleteCertificates
 );
 
-router.use('/certificates/:id/:filename', (req, res) => {
+router.use('/certificates/:filename', (req, res) => {
   const filePath = path.join(
     uploadPath,
     req.userdata.id,
@@ -74,10 +74,14 @@ router.use('/certificates/:id/:filename', (req, res) => {
   });
 });
 
-// untuk melihat data CV yang sudah diupload dengan format : id berdasarkan id user yang mengupload CV
-// setelah itu nama file dari CVnya. contoh : localhost:3000/profile/cv/15/{nama CV}
-router.use('/cv', (req, res, next) => {
-  express.static(path.join(uploadPath, req.userdata.id))(req, res, next);
+router.use('/cv/:filename', (req, res) => {
+  const filePath = path.join(uploadPath, req.userdata.id, req.params.filename);
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(err.status).end();
+    }
+  });
 });
 
 module.exports = router;
