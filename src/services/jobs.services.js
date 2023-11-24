@@ -1,5 +1,5 @@
 const { jobsRepositories } = require('../repositories');
-const { companiesRepositories } = require('../repositories');
+const { usersRepositories } = require('../repositories');
 
 async function getJobs({ page = 1 }) {
   const jobs = await jobsRepositories.getJobs({
@@ -37,16 +37,19 @@ async function createJob({
   companies_id,
   name,
   description,
+  what_will_you_do,
+  what_will_you_need,
   location,
   category,
   job_type,
   salary,
   capacity
 }) {
-  const user = await companiesRepositories.getCompanyById(companies_id);
+  const user = await usersRepositories.getUserById(companies_id);
   if (!user) {
     throw new Error(404);
   }
+
   const jobs = await jobsRepositories.getJobByCompanyIdAndName({
     companies_id,
     name
@@ -60,6 +63,8 @@ async function createJob({
     companies_id,
     name,
     description,
+    what_will_you_do,
+    what_will_you_need,
     location,
     category,
     job_type,
@@ -75,6 +80,8 @@ async function updateJob({
   companies_id,
   name,
   description,
+  what_will_you_do,
+  what_will_you_need,
   location,
   category,
   job_type,
@@ -82,7 +89,7 @@ async function updateJob({
   capacity,
   is_open
 }) {
-  const user = await companiesRepositories.getCompanyById(companies_id);
+  const user = await usersRepositories.getUserById(companies_id);
   if (!user) {
     throw new Error(404);
   }
@@ -114,6 +121,8 @@ async function updateJob({
     companies_id,
     name,
     description,
+    what_will_you_do,
+    what_will_you_need,
     location,
     category,
     job_type,
@@ -126,7 +135,7 @@ async function updateJob({
 }
 
 async function deleteJob({ id, companies_id }) {
-  const user = await companiesRepositories.getCompanyById(companies_id);
+  const user = await usersRepositories.getUserById(companies_id);
   if (!user) {
     throw new Error(404);
   }

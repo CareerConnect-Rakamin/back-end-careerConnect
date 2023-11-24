@@ -7,6 +7,8 @@ const requirements = {
   createJobs: [
     body('name').isString().isLength({ min: 3 }),
     body('description').isString().isLength({ min: 3 }),
+    body('what_will_you_do').isString(),
+    body('what_will_you_need').isString(),
     body('location').isString().isLength({ min: 3 }),
     body('category')
       .isString()
@@ -33,6 +35,8 @@ const requirements = {
       .isString()
       .isLength({ min: 3 })
       .optional({ nullable: true }),
+    body('what_will_you_do').isString().optional({ nullable: true }),
+    body('what_will_you_need').isString().optional({ nullable: true }),
     body('location')
       .isString()
       .isLength({ min: 3 })
@@ -60,7 +64,13 @@ const requirements = {
     body('capacity').isInt({ min: 1 }).default(0).optional({ nullable: true }),
     body('is_open').isBoolean().default(true).optional({ nullable: true })
   ],
-  deleteJob: [param('jobId').isInt({ min: 1 })]
+  deleteJob: [param('jobId').isInt({ min: 1 })],
+
+  createRequirements: [
+    param('jobId').isInt({ min: 1 }),
+    body('what_will_you_do').isString(),
+    body('what_will_you_need').isString()
+  ]
 };
 
 module.exports = requirements;

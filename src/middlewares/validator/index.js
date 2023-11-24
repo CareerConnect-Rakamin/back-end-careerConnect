@@ -4,6 +4,7 @@ const jobsRequirements = require('./jobs.requirements');
 const authRequirements = require('./auth.requirements');
 const fileRequirements = require('./file.requirements');
 const jobSeekerRequirements = require('./jobseeker.requirements');
+const applicationRequirements = require('./application.requirements');
 const logger = require('../../utils/logger');
 
 const requirements = {
@@ -11,7 +12,8 @@ const requirements = {
   ...companyRequirements,
   ...authRequirements,
   ...fileRequirements,
-  ...jobSeekerRequirements
+  ...jobSeekerRequirements,
+  ...applicationRequirements
 };
 
 function validate(validations) {

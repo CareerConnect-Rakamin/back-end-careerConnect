@@ -26,6 +26,14 @@ const Job = db.define(
       type: DataTypes.TEXT,
       allowNull: false
     },
+    what_will_you_do: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    what_will_you_need: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
     location: {
       type: DataTypes.TEXT,
       allowNull: false

@@ -15,27 +15,6 @@ const UpdatePhoto = async (params) => {
   return uploadPhoto;
 };
 
-const DeletePhoto = async (params) => {
-  const id = params;
-  let fileName = '';
-  const findData = await JobSeekerModel.findByPk(id);
-  if (findData.gender === 'M') {
-    fileName = 'public/uploads/default/man.png';
-  } else if (findData.gender === 'F') {
-    fileName = 'public/uploads/default/woman.png';
-  }
-  const deletePhoto = await JobSeekerModel.update(
-    {
-      photo_profile: fileName
-    },
-    {
-      where: { id: id }
-    }
-  );
-  return deletePhoto;
-};
-
 module.exports = {
-  UpdatePhoto,
-  DeletePhoto
+  UpdatePhoto
 };
