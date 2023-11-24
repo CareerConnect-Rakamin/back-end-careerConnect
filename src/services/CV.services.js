@@ -9,16 +9,6 @@ const UpdateCV = async (data) => {
   return updateCV;
 };
 
-const DeleteCV = async (data) => {
-  const { id } = data;
-  if (!id) {
-    throw new Error('Invalid id');
-  }
-  const deleteCV = await CVRepo.DeleteCV({ id });
-  return deleteCV;
-};
-
 module.exports = {
-  UpdateCV,
-  DeleteCV
+  UpdateCV
 };

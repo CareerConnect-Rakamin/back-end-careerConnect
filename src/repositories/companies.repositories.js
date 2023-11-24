@@ -56,13 +56,16 @@ const updateCompanyById = async (id, data) => {
     phone_number,
     address
   } = data;
+
+  let hashPassword;
   if (password) {
-    const password = await bcrypt.hash(password, 10);
+    hashPassword = await bcrypt.hash(password, 10);
   }
+
   await UserModel.update(
     {
       email,
-      password
+      password: hashPassword
     },
     {
       where: {

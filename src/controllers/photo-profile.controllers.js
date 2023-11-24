@@ -19,21 +19,6 @@ const UploadPhoto = async (req, res) => {
   }
 };
 
-const DeletePhoto = async (req, res) => {
-  const id = req.params.id;
-  try {
-    const result = await PhotoService.DeletePhoto(id);
-    if (result) {
-      res
-        .status(200)
-        .json({ status: 'Success', message: 'Photo Deleted successfully' });
-    }
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
-};
-
 module.exports = {
-  UploadPhoto,
-  DeletePhoto
+  UploadPhoto
 };
