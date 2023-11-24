@@ -9,7 +9,7 @@ async function createApply(req, res) {
     });
     res.status(201).json({
       status: 'Success',
-      message: 'Apply Created'
+      message: 'Apply Successfull'
     });
   } catch (err) {
     if (err.message == 404) {
@@ -96,7 +96,7 @@ async function updateApplyFromSeeker(req, res) {
     });
     res.status(200).json({
       status: 'Success',
-      message: 'Apply Updated'
+      message: 'Apply Canceled'
     });
   } catch (err) {
     if (err.message == 404) {
