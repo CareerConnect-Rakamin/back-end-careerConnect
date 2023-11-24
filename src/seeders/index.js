@@ -4,7 +4,6 @@ const certificateSeeders = require('./certificates.seeders');
 const companySeeders = require('./companies.seeders');
 const jobSeeders = require('./jobs.seeders');
 const jobSeekerSeeders = require('./jobSeekers.seeders');
-const requirementSeeders = require('./requirements.seeders');
 
 module.exports = {
   userSeeders,
@@ -12,6 +11,5 @@ module.exports = {
   certificateSeeders,
   companySeeders,
   jobSeeders,
-  jobSeekerSeeders,
-  requirementSeeders
+  jobSeekerSeeders
 };
