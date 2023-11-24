@@ -41,8 +41,8 @@ const updateCompanyById = async (req, res) => {
   try {
     const result = await companiesServices.updateCompanyById(id, req.body);
     res.status(200).json({
-      message: 'Success',
-      data: 'Data Profile successfully updated'
+      status: 'Success',
+      message: 'Data Profile successfully updated'
     });
   } catch (err) {
     if (err.status) {
