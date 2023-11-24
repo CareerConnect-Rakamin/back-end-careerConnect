@@ -149,20 +149,13 @@
 
 /**
  * @swagger
- * /companies/{id}:
+ * /companies:
  *   put:
  *     summary: Update company by id
  *     description: Updating company by id
  *     tags: [Companies]
  *     security:
  *        - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: integer
- *           minimum: 1
- *         description: id of company to getting data company
  *     requestBody:
  *       required: true
  *       content:

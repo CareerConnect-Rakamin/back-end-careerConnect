@@ -26,7 +26,7 @@ const GetUserProfile = async (req, res) => {
 };
 
 const UpdateUserProfile = async (req, res) => {
-  const id = req.params.id;
+  const id = req.userdata.id;
   try {
     await UserService.UpdateUserProfile(id, req.body);
     res.status(200).json({

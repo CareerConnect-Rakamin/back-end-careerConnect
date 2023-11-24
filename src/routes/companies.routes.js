@@ -9,21 +9,21 @@ const { validate, requirements } = validator;
 
 router
   .route('/')
-  .get([validate(requirements.getCompanies)], companiesController.getCompanies);
+  .get([validate(requirements.getCompanies)], companiesController.getCompanies)
+  .put(
+    [
+      authMiddleware.authenticate,
+      authMiddleware.authorize(ROLES.COMPANY),
+      validate(requirements.updateCompanyById)
+    ],
+    companiesController.updateCompanyById
+  );
 
 router
   .route('/:id')
   .get(
     [validate(requirements.getCompanyById)],
     companiesController.getCompanyById
-  )
-  .put(
-    [
-      authMiddleware.authenticate,
-      validate(requirements.updateCompanyById),
-      authMiddleware.verifyUser
-    ],
-    companiesController.updateCompanyById
   );
 
 module.exports = router;
