@@ -37,7 +37,7 @@ const getCompanyById = async (req, res) => {
 };
 
 const updateCompanyById = async (req, res) => {
-  const id = req.params.id;
+  const id = req.userdata.id;
   try {
     const result = await companiesServices.updateCompanyById(id, req.body);
     res.status(200).json({

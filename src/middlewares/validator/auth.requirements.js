@@ -11,6 +11,8 @@ const requirements = {
     body('password').isString().isLength({ min: 8 }),
     body('full_name').isString().notEmpty(),
     body('gender').isIn(['F', 'M']),
+    body('phone_number').notEmpty(),
+    body('address').isString(),
     body('place_of_birth').isString().notEmpty(),
     body('date_of_birth').matches(/^\d{2}-\d{2}-\d{4}$/)
   ]

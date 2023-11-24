@@ -27,7 +27,7 @@
  *               status:
  *                  example: failed
  *               message:
- *                  example: Invalid token
+ *                  example: Invalid or expired token
  *     InvalidInput:
  *       description: Invalid input provided
  *       content:

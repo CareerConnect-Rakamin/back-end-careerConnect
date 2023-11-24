@@ -26,8 +26,16 @@ async function login(req, res) {
 }
 
 const registerJobSeeker = async (req, res) => {
-  const { email, password, full_name, gender, place_of_birth, date_of_birth } =
-    req.body;
+  const {
+    email,
+    password,
+    full_name,
+    gender,
+    phone_number,
+    address,
+    place_of_birth,
+    date_of_birth
+  } = req.body;
   const role = 'jobseeker';
   let photo = '';
   if (gender == 'M') {
@@ -45,6 +53,8 @@ const registerJobSeeker = async (req, res) => {
       photo_profile: photo,
       full_name,
       gender,
+      phone_number,
+      address,
       place_of_birth,
       date_of_birth
     });

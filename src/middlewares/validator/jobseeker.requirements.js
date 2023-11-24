@@ -2,7 +2,6 @@ const { query, body, param } = require('express-validator');
 
 const requirements = {
   updateJobSeeker: [
-    param('id').isInt({ min: 1 }),
     body('email').isEmail().optional({ nullable: true }),
     body('password').isString({ min: 8 }).optional({ nullable: true }),
     body('fullname').isString().optional({ nullable: true }),

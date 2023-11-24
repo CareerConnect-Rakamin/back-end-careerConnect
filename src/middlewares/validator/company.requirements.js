@@ -6,7 +6,6 @@ const requirements = {
   getCompanyById: [param('id').isInt({ min: 1 })],
 
   updateCompanyById: [
-    param('id').isInt({ min: 1 }).optional({ nullable: true }),
     body('password').isString({ min: 8 }).optional({ nullable: true }),
     body('name').isString().isLength({ min: 3 }).optional({ nullable: true }),
     body('type')

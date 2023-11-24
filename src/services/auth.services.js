@@ -35,6 +35,8 @@ const createJobSeeker = async (data) => {
     photo_profile,
     full_name,
     gender,
+    phone_number,
+    address,
     place_of_birth,
     date_of_birth
   } = data;
@@ -63,6 +65,8 @@ const createJobSeeker = async (data) => {
     photo_profile,
     full_name,
     gender,
+    phone_number,
+    address,
     place_of_birth,
     date_of_birth
   });

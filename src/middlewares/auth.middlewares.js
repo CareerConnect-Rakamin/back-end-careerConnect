@@ -16,11 +16,13 @@ class AuthMiddleware {
     }
 
     const token = authorization?.slice(7);
-    const payload = verify(token, secretKey);
-    if (!payload) {
+    let payload;
+    try {
+      payload = verify(token, secretKey);
+    } catch (err) {
       res.status(401).json({
         status: 'failed',
-        message: 'Invalid Token'
+        message: 'Invalid or expired token'
       });
       return;
     }

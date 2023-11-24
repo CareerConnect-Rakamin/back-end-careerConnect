@@ -1,6 +1,6 @@
-const { JobSeekerModel } = require('../models');
+const { JobSeekerModel, CompanyModel } = require('../models');
 
-const UpdatePhoto = async (params) => {
+const UpdatePhotoJobSeeker = async (params) => {
   const { id, photo_profile } = params;
   const uploadPhoto = await JobSeekerModel.update(
     {
@@ -15,6 +15,22 @@ const UpdatePhoto = async (params) => {
   return uploadPhoto;
 };
 
+const UpdatePhotoCompany = async (params) => {
+  const { id, photo_profile } = params;
+  const uploadPhoto = await CompanyModel.update(
+    {
+      photo_profile: photo_profile
+    },
+    {
+      where: {
+        companies_id: id
+      }
+    }
+  );
+  return uploadPhoto;
+};
+
 module.exports = {
-  UpdatePhoto
+  UpdatePhotoJobSeeker,
+  UpdatePhotoCompany
 };

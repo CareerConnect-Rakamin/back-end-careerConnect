@@ -22,10 +22,10 @@ const uploadPath = path.join(__dirname, '../../public/uploads');
 
 router.get('/:id', UserControllers.GetUserProfile);
 router.put(
-  '/:id',
+  '/',
   authMiddleware.authenticate,
+  authMiddleware.authorize(ROLES.JOBSEEKER),
   validate(requirements.updateJobSeeker),
-  authMiddleware.verifyUser,
   UserControllers.UpdateUserProfile
 );
 
