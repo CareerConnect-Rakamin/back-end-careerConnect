@@ -1,5 +1,4 @@
 const { UserService } = require('../services');
-const bcrypt = require('bcrypt');
 const logger = require('../utils/logger');
 
 const GetUserProfile = async (req, res) => {
@@ -36,7 +35,7 @@ const UpdateUserProfile = async (req, res) => {
     });
   } catch (error) {
     if (error.message === 'Not Found') {
-      res.status(404).json({ message: 'User not found' });
+      res.status(404).json({ status: 'failed', message: 'User not found' });
     }
     logger.error(error.message);
     res

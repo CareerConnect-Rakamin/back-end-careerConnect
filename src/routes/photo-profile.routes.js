@@ -16,7 +16,6 @@ router.put(
   PhotoControllers.UploadPhoto
 );
 
-// untuk mengambil foto profil, menggunakan format localhost:3000/api/v1/profile/photo/{id user}/{nama file foto}
 router.use('/:foldername/:filename', (req, res) => {
   const filePath = path.join(
     uploadPath,

@@ -9,15 +9,6 @@ const UpdatePhoto = async (data) => {
   return upload;
 };
 
-const DeletePhoto = async (id) => {
-  if (!id) {
-    return Promise.reject(new Error('Id null'));
-  }
-  const deletePhoto = await PhotoRepo.DeletePhoto(id);
-  return deletePhoto;
-};
-
 module.exports = {
-  UpdatePhoto,
-  DeletePhoto
+  UpdatePhoto
 };

@@ -10,10 +10,6 @@ router
   .post([validate(requirements.login)], authController.login);
 
 router
-  .route('/logout')
-  .post([authMiddleware.authenticate], authController.login);
-
-router
   .route('/register/jobseeker')
   .post(
     [validate(requirements.registerJobSeeker)],
