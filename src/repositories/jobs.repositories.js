@@ -1,10 +1,33 @@
-const { JobModel } = require('../models');
+const { col } = require('sequelize');
+const { JobModel, CompanyModel } = require('../models');
 
 async function getJobs({ page }) {
   const offset = (page - 1) * 12;
   return JobModel.findAll({
+    attributes: [
+      'id',
+      'companies_id',
+      [col('company.name'), 'company_name'],
+      [col('company.photo_profile'), 'company_photo'],
+      'name',
+      'description',
+      'location',
+      'category',
+      'job_type',
+      'salary',
+      'capacity',
+      'is_open'
+    ],
     offset,
-    limit: 12
+    limit: 12,
+    include: [
+      {
+        model: CompanyModel,
+        required: true,
+        attributes: [],
+        as: 'company'
+      }
+    ]
   });
 }
 
@@ -19,7 +42,34 @@ async function getJobByCompanyId(companies_id) {
 }
 
 async function getJobById(id) {
-  return JobModel.findByPk(id);
+  const job = await JobModel.findByPk(id, {
+    attributes: [
+      'id',
+      'companies_id',
+      [col('company.name'), 'company_name'],
+      [col('company.photo_profile'), 'company_photo'],
+      'name',
+      'description',
+      'what_will_you_do',
+      'what_will_you_need',
+      'location',
+      'category',
+      'job_type',
+      'salary',
+      'capacity',
+      'is_open'
+    ],
+    include: [
+      {
+        model: CompanyModel,
+        required: true,
+        attributes: [],
+        as: 'company'
+      }
+    ]
+  });
+
+  return job;
 }
 
 async function getJobByIdAndCompanyId({ id, companies_id }) {
@@ -48,6 +98,8 @@ async function createJob({
   companies_id,
   name,
   description,
+  what_will_you_do,
+  what_will_you_need,
   location,
   category,
   job_type,
@@ -58,6 +110,8 @@ async function createJob({
     companies_id,
     name,
     description,
+    what_will_you_do,
+    what_will_you_need,
     location,
     category,
     job_type,
@@ -72,6 +126,8 @@ async function updateJob({
   companies_id,
   name,
   description,
+  what_will_you_do,
+  what_will_you_need,
   location,
   category,
   job_type,
@@ -85,6 +141,8 @@ async function updateJob({
       companies_id,
       name,
       description,
+      what_will_you_do,
+      what_will_you_need,
       location,
       category,
       job_type,

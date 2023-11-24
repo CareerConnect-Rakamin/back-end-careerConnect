@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { jobsControllers } = require('../controllers');
+const { jobsControllers, requirementsControllers } = require('../controllers');
 const { validator } = require('../middlewares');
 const { authMiddleware } = require('../middlewares');
 const { ROLES } = require('../utils/constants');

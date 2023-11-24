@@ -7,7 +7,7 @@ const AddCeritificates = async (req, res) => {
   const fileDirr = req.file.path;
   const fileName = req.file.filename;
   try {
-    const file = `public/uploads/${id}/certificates/${fileName}`;
+    const file = `jobseekers/certificates/${id}/${fileName}`;
     await CertificatesService.AddCeritificates(id, {
       name,
       path: file
