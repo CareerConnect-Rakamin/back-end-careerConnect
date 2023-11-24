@@ -10,9 +10,7 @@ const requirements = {
     body('phone_number').isString().optional({ nullable: true }),
     body('address').isString().optional({ nullable: true }),
     body('place_of_birth').isString().optional({ nullable: true }),
-    body('date_of_birth')
-      .matches(/^\d{2}-\d{2}-\d{4}$/)
-      .optional({ nullable: true }),
+    body('date_of_birth').isDate().optional({ nullable: true }),
     body('link_portfolio').isURL().optional({ nullable: true })
   ],
 
