@@ -47,8 +47,15 @@ const ProfileUser = async (id) => {
 const addJobSeeker = async (params) => {
   const { email, password, role } = params;
 
-  const { photo_profile, full_name, gender, place_of_birth, date_of_birth } =
-    params;
+  const {
+    photo_profile,
+    full_name,
+    gender,
+    phone_number,
+    address,
+    place_of_birth,
+    date_of_birth
+  } = params;
 
   const addUser = await UserModel.create({
     email: email,
@@ -62,6 +69,8 @@ const addJobSeeker = async (params) => {
     photo_profile: photo_profile,
     full_name: full_name,
     gender: gender,
+    phone_number: phone_number,
+    address: address,
     place_of_birth: place_of_birth,
     date_of_birth: date_of_birth
   });

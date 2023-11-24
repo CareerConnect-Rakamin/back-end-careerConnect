@@ -89,6 +89,11 @@
  *                 example: User Nama Lengkap
  *               gender:
  *                 example: M
+ *               phone_number:
+ *                 type: string
+ *                 example: '0852123456789'
+ *               address:
+ *                 example: Meikarta, Wakanda
  *               place_of_birth:
  *                 example: Pandeglang
  *               date_of_birth:
