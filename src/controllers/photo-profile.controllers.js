@@ -6,7 +6,7 @@ const UploadPhoto = async (req, res) => {
   const fileDirr = req.file.path;
   const fileName = req.file.filename;
   try {
-    const file = `public/uploads/${id}/${fileName}`;
+    const file = `photo/${id}/${fileName}`;
     const result = await PhotoService.UpdatePhoto({ id, photo_profile: file });
     res
       .status(200)
