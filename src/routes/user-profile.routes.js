@@ -12,6 +12,7 @@ const {
 const { validator } = require('../middlewares');
 const { ROLES } = require('../utils/constants');
 const path = require('path');
+const logger = require('../utils/logger');
 
 const router = express.Router();
 const { validate, requirements } = validator;
@@ -59,26 +60,27 @@ router.delete(
   CertificatesControllers.DeleteCertificates
 );
 
-router.use('/certificates/:filename', (req, res) => {
-  const filePath = path.join(
-    uploadPath,
-    req.userdata.id,
-    '/certificates',
-    req.params.filename
-  );
+router.get('/certificates/:id/:filename', (req, res) => {
+  const filename = req.params.filename;
+  const userId = req.params.id;
+  const filePath = path.join(uploadPath, `${userId}/certificates`, filename);
   res.sendFile(filePath, (err) => {
     if (err) {
-      console.error(err);
+      logger.error(err);
       res.status(err.status).end();
     }
   });
 });
 
-router.use('/cv/:filename', (req, res) => {
-  const filePath = path.join(uploadPath, req.userdata.id, req.params.filename);
+router.get('/cv/:id/:filename', (req, res) => {
+  const filename = req.params.filename;
+  const userId = req.params.id;
+  logger.info(filename);
+  logger.info(userId);
+  const filePath = path.join(uploadPath, `${userId}`, filename);
   res.sendFile(filePath, (err) => {
     if (err) {
-      console.error(err);
+      logger.error(err);
       res.status(err.status).end();
     }
   });

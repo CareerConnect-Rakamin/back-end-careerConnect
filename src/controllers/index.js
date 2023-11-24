@@ -5,7 +5,6 @@ const UserControllers = require('./user-profile.controllers');
 const CVControllers = require('./CV.controllers');
 const CertificatesControllers = require('./certificates.controllers');
 const PhotoControllers = require('./photo-profile.controllers');
-const requirementsControllers = require('./requirements.controllers');
 
 module.exports = {
   jobsControllers,
@@ -14,6 +13,5 @@ module.exports = {
   UserControllers,
   CVControllers,
   CertificatesControllers,
-  PhotoControllers,
-  requirementsControllers
+  PhotoControllers
 };
