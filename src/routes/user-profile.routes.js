@@ -12,6 +12,7 @@ const {
 const { validator } = require('../middlewares');
 const { ROLES } = require('../utils/constants');
 const path = require('path');
+const logger = require('../utils/logger');
 
 const router = express.Router();
 const { validate, requirements } = validator;
@@ -59,25 +60,30 @@ router.delete(
   CertificatesControllers.DeleteCertificates
 );
 
-router.use('/certificates/:id/:filename', (req, res) => {
-  const filePath = path.join(
-    uploadPath,
-    req.userdata.id,
-    '/certificates',
-    req.params.filename
-  );
+router.get('/certificates/:id/:filename', (req, res) => {
+  const filename = req.params.filename;
+  const userId = req.params.id;
+  const filePath = path.join(uploadPath, `${userId}/certificates`, filename);
   res.sendFile(filePath, (err) => {
     if (err) {
-      console.error(err);
+      logger.error(err);
       res.status(err.status).end();
     }
   });
 });
 
-// untuk melihat data CV yang sudah diupload dengan format : id berdasarkan id user yang mengupload CV
-// setelah itu nama file dari CVnya. contoh : localhost:3000/profile/cv/15/{nama CV}
-router.use('/cv', (req, res, next) => {
-  express.static(path.join(uploadPath, req.userdata.id))(req, res, next);
+router.get('/cv/:id/:filename', (req, res) => {
+  const filename = req.params.filename;
+  const userId = req.params.id;
+  logger.info(filename);
+  logger.info(userId);
+  const filePath = path.join(uploadPath, `${userId}`, filename);
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      logger.error(err);
+      res.status(err.status).end();
+    }
+  });
 });
 
 module.exports = router;

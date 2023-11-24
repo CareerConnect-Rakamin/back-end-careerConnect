@@ -40,6 +40,8 @@
  *                          example:
  *                                - id: 1
  *                                  companies_id: 2
+ *                                  company_name: TechWork
+ *                                  company_photo: photo/default/company.png
  *                                  name: "IT Support"
  *                                  description: "Work as IT Support"
  *                                  location: "Jakarta, Wakanda"
@@ -52,6 +54,8 @@
  *                                  updatedAt: "2023-11-11T13:42:11.304Z"
  *                                - id: 2
  *                                  companies_id: 4
+ *                                  company_name: HealthCare
+ *                                  company_photo: photo/default/company.png
  *                                  name: "Human Resouces"
  *                                  description: "Work as Human Resouces"
  *                                  location: "Surabaya, Wakanda"
@@ -280,6 +284,14 @@
  *                  type: string
  *                  description: describe the job
  *                  example: Making Backend Environment for an event
+ *                what_will_you_do:
+ *                  type: string
+ *                  description: what will jobseeker do in this job
+ *                  example: '- Experience in recruitment, good communication skills\n- Experience in conflict resolution, good interpersonal skills\n- Experience in policy development, good organizational skills'
+ *                what_will_you_need:
+ *                  type: string
+ *                  description: what will jobseeker do in this job
+ *                  example: '- Experience in IT support, good communication skills\n- Experience with hardware and software troubleshooting\n- Experience in IT infrastructure maintenance'
  *                location:
  *                  type: string
  *                  description: Location of Job

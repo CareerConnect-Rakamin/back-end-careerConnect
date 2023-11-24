@@ -6,7 +6,7 @@ const UpdateCV = async (req, res) => {
   const fileDir = req.file.path;
   const fileName = req.file.filename;
   try {
-    const file = `public/uploads/${id}/${fileName}`;
+    const file = `jobseekers/cv/${id}/${fileName}`;
     await CVService.UpdateCV({ id, cv_path: file });
     res
       .status(200)

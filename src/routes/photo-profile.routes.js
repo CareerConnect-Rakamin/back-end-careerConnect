@@ -17,8 +17,18 @@ router.put(
 );
 
 // untuk mengambil foto profil, menggunakan format localhost:3000/api/v1/profile/photo/{id user}/{nama file foto}
-router.use('/photo/:id', (req, res, next) => {
-  express.static(path.join(uploadPath, req.params.id))(req, res, next);
+router.use('/:foldername/:filename', (req, res) => {
+  const filePath = path.join(
+    uploadPath,
+    req.params.foldername,
+    req.params.filename
+  );
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(err.status).end();
+    }
+  });
 });
 
 module.exports = router;

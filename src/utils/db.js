@@ -4,7 +4,6 @@ const {
   CompanyModel,
   JobModel,
   JobSeekerModel,
-  RequirementModel,
   UserModel
 } = require('../models');
 
@@ -14,7 +13,6 @@ const {
   companySeeders,
   jobSeeders,
   jobSeekerSeeders,
-  requirementSeeders,
   userSeeders
 } = require('../seeders');
 const logger = require('./logger');
@@ -25,7 +23,6 @@ async function migrateTables() {
   await CompanyModel.sync({ force: true });
   await CertificateModel.sync({ force: true });
   await JobModel.sync({ force: true });
-  await RequirementModel.sync({ force: true });
   await ApplicationModel.sync({ force: true });
 }
 
@@ -35,7 +32,6 @@ async function seedData() {
   await companySeeders();
   await certificateSeeders();
   await jobSeeders();
-  await requirementSeeders();
   await applicationSeeders();
 }
 

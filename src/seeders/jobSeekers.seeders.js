@@ -34,7 +34,7 @@ const createJobSeeker = (
 
 createJobSeeker(
   1,
-  `public/uploads/default/man.png`,
+  `photo/default/man.png`,
   `John Doe`,
   `Bio of me as Job Seeker`,
   'M',
@@ -47,7 +47,7 @@ createJobSeeker(
 );
 createJobSeeker(
   3,
-  `public/uploads/default/woman.png`,
+  `photo/default/woman.png`,
   `Marry Doe`,
   `Bio of me as Job Seeker`,
   'F',
@@ -60,7 +60,7 @@ createJobSeeker(
 );
 createJobSeeker(
   5,
-  `public/uploads/default/man.png`,
+  `photo/default/man.png`,
   `Still Doe`,
   `Bio of me as Job Seeker`,
   'M',
