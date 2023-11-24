@@ -60,20 +60,13 @@
 
 /**
  * @swagger
- * /jobseekers/{id}:
+ * /jobseekers:
  *   put:
  *     summary: Update data by user Id
  *     description: Update data by user id
  *     tags: [JobSeekers]
  *     security:
  *        - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: integer
- *           minimum: 1
- *         description: id of user to update data profile
  *     requestBody:
  *       required: true
  *       content:
