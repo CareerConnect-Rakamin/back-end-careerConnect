@@ -6,6 +6,7 @@ const UserService = require('./user-profile.services');
 const CVService = require('./CV.services');
 const CertificatesService = require('./certificates.services');
 const PhotoService = require('./photo-profile.services');
+const applicationsServices = require('./applications.services');
 
 module.exports = {
   jobsServices,
@@ -15,5 +16,6 @@ module.exports = {
   UserService,
   CVService,
   CertificatesService,
-  PhotoService
+  PhotoService,
+  applicationsServices
 };
