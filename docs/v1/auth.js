@@ -97,7 +97,7 @@
  *               place_of_birth:
  *                 example: Pandeglang
  *               date_of_birth:
- *                 example: 02-02-2002
+ *                 example: 2002-02-02
  *     responses:
  *       200:
  *         description: Successfully Register
@@ -112,8 +112,6 @@
  *                   example: Successfully Register
  *       400:
  *         $ref: '#/components/responses/InvalidInput'
- *       405:
- *         $ref: '#/components/responses/MethodNotAllowed'
  *       '409':
  *         description: Already exist
  *         content:
@@ -172,8 +170,6 @@
  *                   example: Successfully Register
  *       400:
  *         $ref: '#/components/responses/InvalidInput'
- *       405:
- *         $ref: '#/components/responses/MethodNotAllowed'
  *       '409':
  *         description: Already exist
  *         content:
