@@ -45,12 +45,12 @@ const updateCompanyById = async (req, res) => {
       message: 'Data Profile successfully updated'
     });
   } catch (err) {
-    if (err.status) {
-      res.status(err.status).json({ status: 'failed', message: err.message });
+    if (err.message == 'Email already exist') {
+      return res.status(409).json({ status: 'failed', message: err.message });
     }
     logger.error(err);
     res
-      .status(err.status)
+      .status(500)
       .json({ status: 'failed', message: 'Internal server error' });
   }
 };

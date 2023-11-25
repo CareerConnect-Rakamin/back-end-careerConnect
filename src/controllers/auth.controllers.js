@@ -37,7 +37,7 @@ const registerJobSeeker = async (req, res) => {
     date_of_birth
   } = req.body;
   const role = 'jobseeker';
-  let photo = '';
+  let photo;
   if (gender == 'M') {
     photo = 'photo/default/man.png';
   } else {
@@ -70,7 +70,6 @@ const registerJobSeeker = async (req, res) => {
     res
       .status(500)
       .send({ status: 'failed', message: 'internal server error' });
-    return;
   }
 };
 

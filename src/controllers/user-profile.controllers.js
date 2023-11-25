@@ -35,12 +35,15 @@ const UpdateUserProfile = async (req, res) => {
     });
   } catch (error) {
     if (error.message === 'Not Found') {
-      res.status(404).json({ status: 'failed', message: 'User not found' });
+      return res.status(404).json({ status: 'failed', message: error.message });
+    }
+    if (error.message === 'Email already exist') {
+      return res.status(409).json({ status: 'failed', message: error.message });
     }
     logger.error(error.message);
     res
       .status(500)
-      .send({ status: 'failed', message: 'internal server error' });
+      .send({ status: 'failed', message: 'Internal server error' });
   }
 };
 
