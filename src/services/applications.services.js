@@ -1,6 +1,7 @@
 const { applicationsRepositories } = require('../repositories');
 const { jobsRepositories } = require('../repositories');
 const { usersRepositories } = require('../repositories');
+const calculateAge = require('../utils/calculateAge');
 
 async function createApply({ jobs_id, jobseekers_id }) {
   const job = await jobsRepositories.getJobById(jobs_id);
@@ -47,6 +48,12 @@ async function getApplyByJobId({ jobs_id, companies_id }) {
   if (!apply.length) {
     throw new Error(404);
   }
+
+  apply.forEach((application) => {
+    application.dataValues.age = calculateAge(
+      application.dataValues.date_of_birth
+    );
+  });
 
   return apply;
 }
