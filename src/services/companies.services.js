@@ -23,10 +23,14 @@ const getCompanyById = async (id) => {
 const updateCompanyById = async (id, data) => {
   const company = await companiesRepositories.getCompanyById(id);
 
-  if (!company) {
-    const err = new ResponseError(404, 'Company not found');
-    throw err;
+  const { email } = data;
+  if (email) {
+    const emailExist = await usersRepositories.getUserByEmail(email);
+    if (emailExist) {
+      throw new Error('Email already exist');
+    }
   }
+
   await companiesRepositories.updateCompanyById(id, data);
 };
 
