@@ -2,7 +2,7 @@ const { col } = require('sequelize');
 const { JobModel, CompanyModel } = require('../models');
 const { Op } = require('sequelize');
 
-async function getJobs({ page, name }) {
+async function getJobs({ page, keyword }) {
   const offset = (page - 1) * 12;
   return JobModel.findAll({
     attributes: [
@@ -20,9 +20,18 @@ async function getJobs({ page, name }) {
       'is_open'
     ],
     where: {
-      name: {
-        [Op.iLike]: '%' + name + '%'
-      }
+      [Op.or]: [
+        {
+          name: {
+            [Op.iLike]: `%${keyword}%`
+          }
+        },
+        {
+          location: {
+            [Op.iLike]: `%${keyword}%`
+          }
+        }
+      ]
     },
     offset,
     limit: 12,

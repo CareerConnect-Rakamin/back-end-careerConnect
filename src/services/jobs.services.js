@@ -1,10 +1,10 @@
 const { jobsRepositories } = require('../repositories');
 const { usersRepositories } = require('../repositories');
 
-async function getJobs({ page = 1, name = '' }) {
+async function getJobs({ page = 1, keyword = '' }) {
   const jobs = await jobsRepositories.getJobs({
     page,
-    name
+    keyword
   });
 
   if (!jobs.length) {
