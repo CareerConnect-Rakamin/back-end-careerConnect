@@ -26,6 +26,11 @@
  *          minimum: 1
  *          default: 1
  *        description: Page number for pagination
+ *      - in: query
+ *        name: name
+ *        schema:
+ *          type: string
+ *        description: Search term for job names
  *    responses:
  *      '200':
  *        description: Successfull response

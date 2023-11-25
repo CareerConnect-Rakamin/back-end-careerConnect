@@ -34,13 +34,16 @@ const updateCompanyById = async (id, data) => {
   await companiesRepositories.updateCompanyById(id, data);
 };
 
-async function getCompanies({ page }) {
-  try {
-    const result = await companiesRepositories.getCompanies({ page });
-    return result;
-  } catch (error) {
-    throw new Error(`Error while getting companies: ${error.message}`);
+async function getCompanies({ page = 1, name = '' }) {
+  const result = await companiesRepositories.getCompanies({
+    page,
+    name
+  });
+
+  if (!result.length) {
+    throw new Error('Not found');
   }
+  return result;
 }
 
 module.exports = {

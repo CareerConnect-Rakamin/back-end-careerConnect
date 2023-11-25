@@ -26,6 +26,11 @@
  *           minimum: 1
  *           default: 1
  *         description: Page number for pagination
+ *       - in: query
+ *         name: name
+ *         schema:
+ *           type: string
+ *         description: Search term for company names
  *     responses:
  *       '200':
  *         description: Successful response
@@ -39,7 +44,7 @@
  *                      data:
  *                          example:
  *                                  - id: 2
- *                                    photo_profile: "public/uploads/default/company.png"
+ *                                    photo_profile: "photo/default/company.png"
  *                                    name: "TechCompany"
  *                                    type: "Technology"
  *                                    description: "This is our TechCompany"
@@ -50,7 +55,7 @@
  *                                    createdAt: "2023-11-16T16:23:00.902Z"
  *                                    updatedAt: "2023-11-16T16:23:00.902Z"
  *                                  - id: 4
- *                                    photo_profile: "public/uploads/default/company.png"
+ *                                    photo_profile: "photo/default/company.png"
  *                                    name: "HealthCare"
  *                                    type: "Healthcare"
  *                                    description: "This is our HealthCare Company"
@@ -61,7 +66,7 @@
  *                                    createdAt: "2023-11-16T16:23:00.902Z"
  *                                    updatedAt: "2023-11-16T16:23:00.902Z"
  *                                  - id: 6
- *                                    photo_profile: "public/uploads/default/company.png"
+ *                                    photo_profile: "photo/default/company.png"
  *                                    name: "MakinPaper"
  *                                    type: "Manufacturing"
  *                                    description: "This is our Making Paper Company"
