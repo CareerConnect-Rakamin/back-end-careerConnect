@@ -43,7 +43,7 @@ const UpdateUserProfile = async (req, res) => {
     logger.error(error.message);
     res
       .status(500)
-      .send({ status: 'failed', message: 'internal server error' });
+      .send({ status: 'failed', message: 'Internal server error' });
   }
 };
 
