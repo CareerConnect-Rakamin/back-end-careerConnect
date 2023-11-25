@@ -29,17 +29,24 @@ const UpdateUserProfile = async (id, data) => {
     on_work
   } = data;
 
+  const existEmail = await usersRepositories.getUserByEmail(email);
+
+  if (existEmail) {
+    throw new Error('Email already exist');
+  }
+
   const user = await usersRepositories.getUserById(id);
 
   if (!user) {
     throw new Error('Not Found');
   }
+  let hashPass;
   if (password) {
-    const password = await bcrypt.hash(password, 10);
+    hashPass = await bcrypt.hash(password, 10);
   }
   await ProfileRepo.UpdateData(id, {
     email,
-    password,
+    password: hashPass,
     full_name,
     bio,
     gender,
