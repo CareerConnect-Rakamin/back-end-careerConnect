@@ -58,7 +58,7 @@ const createJobSeeker = async (data) => {
     throw new Error('Some value null');
   }
 
-  const response = ProfileRepo.addJobSeeker({
+  const response = await ProfileRepo.addJobSeeker({
     email,
     password,
     role,

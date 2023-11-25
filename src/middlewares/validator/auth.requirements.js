@@ -14,7 +14,7 @@ const requirements = {
     body('phone_number').notEmpty(),
     body('address').isString(),
     body('place_of_birth').isString().notEmpty(),
-    body('date_of_birth').matches(/^\d{2}-\d{2}-\d{4}$/)
+    body('date_of_birth').isDate()
   ]
 };
 

@@ -31,7 +31,7 @@ const JobSeeker = db.define(
     },
     phone_number: {
       type: DataTypes.STRING(20),
-      unique: true
+      allowNull: false
     },
     address: {
       type: DataTypes.TEXT
