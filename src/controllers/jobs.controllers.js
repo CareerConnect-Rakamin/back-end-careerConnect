@@ -9,7 +9,17 @@ async function getJobs(req, res) {
       data: result
     });
   } catch (error) {
-    res.status(500).json(error);
+    if (error.message == 'Not found') {
+      return res.status(404).json({
+        status: 'failed',
+        message: error.message
+      });
+    }
+    logger.error(error);
+    res.status(500).json({
+      status: 'failed',
+      message: 'Internal server error'
+    });
   }
 }
 

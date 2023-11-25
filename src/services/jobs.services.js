@@ -1,13 +1,14 @@
 const { jobsRepositories } = require('../repositories');
 const { usersRepositories } = require('../repositories');
 
-async function getJobs({ page = 1 }) {
+async function getJobs({ page = 1, name = '' }) {
   const jobs = await jobsRepositories.getJobs({
-    page
+    page,
+    name
   });
 
   if (!jobs.length) {
-    return Promise.reject(new Error('Data Lowongan Pekerjaan Tidak Ditemukan'));
+    throw new Error('Not found');
   }
 
   return jobs;
