@@ -75,8 +75,6 @@ const addJobSeeker = async (params) => {
     date_of_birth: date_of_birth
   });
 
-  console.log(addData);
-
   return { addUser, addData };
 };
 
