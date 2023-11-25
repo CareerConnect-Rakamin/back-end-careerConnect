@@ -29,7 +29,10 @@ const UpdateUserProfile = async (id, data) => {
     on_work
   } = data;
 
-  const existEmail = await usersRepositories.getUserByEmail(email);
+  let existEmail;
+  if (email) {
+    existEmail = await usersRepositories.getUserByEmail(email);
+  }
 
   if (existEmail) {
     throw new Error('Email already exist');
