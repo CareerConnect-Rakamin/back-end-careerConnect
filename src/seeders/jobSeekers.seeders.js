@@ -34,13 +34,26 @@ const createJobSeeker = (
 
 createJobSeeker(
   1,
+  `photo/default/woman.png`,
+  `Alice Johnson`,
+  `Passionate software developer with experience in Java and Python.`,
+  'F',
+  `+6281312345566`,
+  `Jln. Merdeka, Medan, Indonesia`,
+  new Date(1995, 4, 15),
+  null,
+  null,
+  false
+);
+createJobSeeker(
+  2,
   `photo/default/man.png`,
-  `John Doe`,
-  `Bio of me as Job Seeker`,
+  `Bob Williams`,
+  `Experienced project manager with a background in civil engineering.`,
   'M',
-  `+6281312345565`,
-  `Jln. Abal-abal, Jakarta, Wakanda`,
-  new Date(2000, 6, 12),
+  `+628131232355366`,
+  `Jln. Kemerdekaan, Surabaya, Indonesia`,
+  new Date(1985, 7, 20),
   null,
   null,
   false
@@ -48,25 +61,38 @@ createJobSeeker(
 createJobSeeker(
   3,
   `photo/default/woman.png`,
-  `Marry Doe`,
-  `Bio of me as Job Seeker`,
+  `Carol Davis`,
+  `Dedicated nurse with 5 years of experience in a hospital setting.`,
   'F',
-  `+628131232355365`,
-  `Jln. Masih Abal-abal, Surabaya, Wakanda`,
-  new Date(2002, 3, 14),
+  `+6281312345522`,
+  `Jln. Pancasila, Bandung, Indonesia`,
+  new Date(1990, 11, 30),
+  null,
+  null,
+  false
+);
+createJobSeeker(
+  4,
+  `photo/default/man.png`,
+  `David Miller`,
+  `Certified public accountant with expertise in tax accounting.`,
+  'M',
+  `+6281312345567`,
+  `Jln. Sudirman, Jakarta, Indonesia`,
+  new Date(1988, 1, 5),
   null,
   null,
   false
 );
 createJobSeeker(
   5,
-  `photo/default/man.png`,
-  `Still Doe`,
-  `Bio of me as Job Seeker`,
-  'M',
-  `+6281312345521`,
-  `Jln. Abal-abal Again, Bandung, Wakanda`,
-  new Date(1999, 10, 23),
+  `photo/default/woman.png`,
+  `Eva Garcia`,
+  `Creative graphic designer with a strong portfolio of work.`,
+  'F',
+  `+628131232355367`,
+  `Jln. Gatot Subroto, Bali, Indonesia`,
+  new Date(1993, 5, 10),
   null,
   null,
   false
