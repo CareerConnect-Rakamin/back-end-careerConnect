@@ -1,7 +1,10 @@
 const { query, body, param } = require('express-validator');
 
 const requirements = {
-  getJobs: [query('page').isInt({ min: 1 }).optional({ nullable: true })],
+  getJobs: [
+    query('page').isInt({ min: 1 }).optional({ nullable: true }),
+    query('keyword').isString().optional({ nullable: true })
+  ],
   getJobByCompanyId: [param('compId').isInt({ min: 1 })],
   getJobById: [param('jobId').isInt({ min: 1 })],
   createJobs: [
