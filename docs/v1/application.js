@@ -138,18 +138,26 @@
  *                            jobs_id: 1
  *                            jobseeker_name: John Doe
  *                            jobseeker_photo: photo/default/man.png
+ *                            jobseeker_address: Jln. Abal-abal, Jakarta, Wakanda
+ *                            gender: M
+ *                            date_of_birth: 2002-04-13T16:00:00.000Z
  *                            cv_jobseeker: jobseekers/cv/1/cv.pdf
- *                            phone_number: +6281312345565
+ *                            phone_number: '+6281312345565'
  *                            email: jobseeker0@gmail.com
  *                            status: pending
+ *                            age: 23
  *                          - jobseekers_id: 3
  *                            jobs_id: 1
  *                            jobseeker_name: Marry Doe
  *                            jobseeker_photo: photo/default/woman.png
+ *                            jobseeker_address: Jln. Masih Abal-abal, Surabaya, Wakanda
+ *                            gender: F
+ *                            date_of_birth: 2002-04-13T16:00:00.000Z
  *                            cv_jobseeker: jobseekers/cv/3/cv.pdf
- *                            phone_number: +628131232355365
+ *                            phone_number: '+628131232355365'
  *                            email: jobseeker1@gmail.com
  *                            status: pending
+ *                            age: 21
  *
  *       '401':
  *         $ref: '#/components/responses/InvalidToken'

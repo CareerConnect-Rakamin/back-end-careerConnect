@@ -3,15 +3,19 @@ const logger = require('../utils/logger');
 
 async function getCompanies(req, res) {
   try {
-    const result = await companiesServices.getCompanies({
-      page: req.query.page || 1
-    });
+    const result = await companiesServices.getCompanies(req.query);
     res.json({
       status: 'Success',
       data: result
     });
   } catch (error) {
-    logger.error({ status: 500, error: error.message });
+    if (error.message == 'Not found') {
+      return res.status(404).json({
+        status: 'failed',
+        message: error.message
+      });
+    }
+    logger.error({ error: error.message });
     res.status(500).json({
       status: 'failed',
       message: 'Internal server error'

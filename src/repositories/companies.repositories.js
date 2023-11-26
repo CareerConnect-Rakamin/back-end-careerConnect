@@ -1,18 +1,19 @@
 const { CompanyModel, UserModel } = require('../models');
 const bcrypt = require('bcrypt');
-const logger = require('../utils/logger');
 const { col } = require('sequelize');
+const { Op } = require('sequelize');
 
-async function getCompanies({ page }) {
-  try {
-    const companies = await CompanyModel.findAll({
-      offset: (page - 1) * 9,
-      limit: 9
-    });
-    return companies;
-  } catch (error) {
-    throw new Error(`Error while fetching companies: ${error.message}`);
-  }
+async function getCompanies({ page, name }) {
+  const companies = await CompanyModel.findAll({
+    where: {
+      name: {
+        [Op.iLike]: '%' + name + '%'
+      }
+    },
+    offset: (page - 1) * 12,
+    limit: 12
+  });
+  return companies;
 }
 
 const getCompanyById = async (id) => {
