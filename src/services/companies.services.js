@@ -35,15 +35,26 @@ const updateCompanyById = async (id, data) => {
 };
 
 async function getCompanies({ page = 1, name = '' }) {
+  const limit = 12;
   const result = await companiesRepositories.getCompanies({
     page,
     name
   });
 
-  if (!result.length) {
+  if (!result.rows.length) {
     throw new Error('Not found');
   }
-  return result;
+  const totalPages = Math.ceil(result.count / limit);
+
+  return {
+    result: result.rows,
+    pagination: {
+      page: page,
+      perPage: limit,
+      total: result.count,
+      totalPages: totalPages
+    }
+  };
 }
 
 module.exports = {

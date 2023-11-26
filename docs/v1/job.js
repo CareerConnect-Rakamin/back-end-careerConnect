@@ -41,6 +41,21 @@
  *              properties:
  *                      status:
  *                          example: Success
+ *                      pagination:
+ *                          type: object
+ *                          properties:
+ *                              page:
+ *                                type: string
+ *                                example: 1
+ *                              perPage:
+ *                                type: integer
+ *                                example: 12
+ *                              total:
+ *                                type: integer
+ *                                example: 2
+ *                              totalPages:
+ *                                type: integer
+ *                                example: 1
  *                      data:
  *                          example:
  *                                - id: 1

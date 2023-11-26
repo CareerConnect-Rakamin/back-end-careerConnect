@@ -4,7 +4,7 @@ const { col } = require('sequelize');
 const { Op } = require('sequelize');
 
 async function getCompanies({ page, name }) {
-  const companies = await CompanyModel.findAll({
+  const companies = await CompanyModel.findAndCountAll({
     where: {
       name: {
         [Op.iLike]: '%' + name + '%'

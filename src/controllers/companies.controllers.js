@@ -6,7 +6,8 @@ async function getCompanies(req, res) {
     const result = await companiesServices.getCompanies(req.query);
     res.json({
       status: 'Success',
-      data: result
+      pagination: result.pagination,
+      data: result.result
     });
   } catch (error) {
     if (error.message == 'Not found') {
