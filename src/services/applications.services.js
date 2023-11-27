@@ -9,6 +9,10 @@ async function createApply({ jobs_id, jobseekers_id }) {
     throw new Error(404);
   }
 
+  if (job.is_open == false) {
+    throw new Error('Job is closed');
+  }
+
   const existApply = await applicationsRepositories.getApplyBySeekerAndJobId({
     jobs_id,
     jobseekers_id
