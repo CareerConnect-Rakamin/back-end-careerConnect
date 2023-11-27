@@ -62,6 +62,31 @@ async function getApplyBySeekerId(req, res) {
   }
 }
 
+async function getApplyBySeekerAndJobId(req, res) {
+  try {
+    const result = await applicationsServices.getApplyBySeekerAndJobId({
+      jobs_id: req.params.jobId,
+      jobseekers_id: req.userdata.id
+    });
+    res.status(200).json({
+      status: 'Success',
+      data: result
+    });
+  } catch (err) {
+    if (err.message == 404) {
+      return res.status(404).json({
+        status: 'failed',
+        message: 'Not found'
+      });
+    }
+    logger.error({ status: 500, error: err });
+    res.status(500).json({
+      status: 'failed',
+      message: 'Internal server error'
+    });
+  }
+}
+
 async function getApplyByJobId(req, res) {
   try {
     const result = await applicationsServices.getApplyByJobId({
@@ -159,6 +184,7 @@ module.exports = {
   createApply,
   getApplyByJobId,
   getApplyBySeekerId,
+  getApplyBySeekerAndJobId,
   updateApplyFromSeeker,
   updateApplyFromCompany
 };
