@@ -11,7 +11,8 @@ async function getCompanies({ page, name }) {
       }
     },
     offset: (page - 1) * 12,
-    limit: 12
+    limit: 12,
+    order: [['name', 'ASC']]
   });
   return companies;
 }
