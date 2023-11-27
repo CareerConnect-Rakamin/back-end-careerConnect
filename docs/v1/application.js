@@ -171,7 +171,7 @@
 
 /**
  * @swagger
- * /apply/seeker/job{id}:
+ * /apply/seeker/{jobId}:
  *   put:
  *     summary: Edit Job status by id to cancel it by jobseeker
  *     description: Edit job status
@@ -180,7 +180,7 @@
  *        - bearerAuth: []
  *     parameters:
  *       - in: path
- *         name: id
+ *         name: jobId
  *         schema:
  *           type: integer
  *           minimum: 1
@@ -222,7 +222,7 @@
 
 /**
  * @swagger
- * /apply/company/job{id}:
+ * /apply/company/{jobId}:
  *   put:
  *     summary: Edit application status by job Id
  *     description: Edit job status
@@ -231,7 +231,7 @@
  *        - bearerAuth: []
  *     parameters:
  *       - in: path
- *         name: id
+ *         name: jobId
  *         schema:
  *           type: integer
  *           minimum: 1
