@@ -119,13 +119,15 @@ async function updateJob({
     throw new Error(403);
   }
 
-  const existJobs = await jobsRepositories.getJobByCompanyIdAndName({
-    companies_id,
-    name
-  });
+  if (name) {
+    const existJobs = await jobsRepositories.getJobByCompanyIdAndName({
+      companies_id,
+      name
+    });
 
-  if (existJobs.length) {
-    throw new Error(409);
+    if (existJobs.length) {
+      throw new Error(409);
+    }
   }
 
   const updateJob = await jobsRepositories.updateJob({
