@@ -19,20 +19,25 @@ async function getJobs({ page, keyword }) {
       'capacity',
       'is_open'
     ],
-    where: {
-      [Op.or]: [
-        {
-          name: {
-            [Op.iLike]: `%${keyword}%`
+    where: [
+      {
+        is_open: true
+      },
+      {
+        [Op.or]: [
+          {
+            name: {
+              [Op.iLike]: `%${keyword}%`
+            }
+          },
+          {
+            location: {
+              [Op.iLike]: `%${keyword}%`
+            }
           }
-        },
-        {
-          location: {
-            [Op.iLike]: `%${keyword}%`
-          }
-        }
-      ]
-    },
+        ]
+      }
+    ],
     offset,
     limit: 12,
     include: [
@@ -42,7 +47,8 @@ async function getJobs({ page, keyword }) {
         attributes: [],
         as: 'company'
       }
-    ]
+    ],
+    order: [['id', 'ASC']]
   });
 }
 
