@@ -25,7 +25,12 @@ const requirements = {
         'Marketing',
         'Engineering',
         'Customer_Service',
-        'Human_Resources'
+        'Human_Resources',
+        'Energy',
+        'Food',
+        'Automotive',
+        'Fashion,',
+        'Construction'
       ]),
     body('job_type').isString().isIn(['WFH', 'WFO']),
     body('salary').isInt({ min: 1000 }).default(0).optional({ nullable: true }),
@@ -56,7 +61,12 @@ const requirements = {
         'Marketing',
         'Engineering',
         'Customer_Service',
-        'Human_Resources'
+        'Human_Resources',
+        'Energy',
+        'Food',
+        'Automotive',
+        'Fashion,',
+        'Construction'
       ])
       .optional({ nullable: true }),
     body('job_type')

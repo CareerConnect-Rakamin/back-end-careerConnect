@@ -6,7 +6,8 @@ async function getJobs(req, res) {
     const result = await jobsServices.getJobs(req.query);
     res.json({
       status: 'Success',
-      data: result
+      pagination: result.pagination,
+      data: result.jobs
     });
   } catch (error) {
     if (error.message == 'Not found') {

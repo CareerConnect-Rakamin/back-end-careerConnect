@@ -49,7 +49,12 @@ const Job = db.define(
         'Marketing',
         'Engineering',
         'Customer_Service',
-        'Human_Resources'
+        'Human_Resources',
+        'Energy',
+        'Food',
+        'Automotive',
+        'Fashion',
+        'Construction'
       ),
       allowNull: false
     },

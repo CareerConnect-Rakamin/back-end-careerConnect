@@ -29,37 +29,59 @@ const createCompany = (
 };
 
 createCompany(
-  2,
-  'photo/default/company.png',
-  'TechCompany',
-  'Technology',
-  'This is our TechCompany',
-  'www.techcompany.com',
-  'techcompany@gmail.com',
-  '+62852123456789',
-  'Jakarta, Wakanda'
-);
-createCompany(
-  4,
-  'photo/default/company.png',
-  'HealthCare',
-  'Healthcare',
-  'This is our HealthCare Company',
-  'www.healthcompany.com',
-  'healthcompany@gmail.com',
-  '+62852123423789',
-  'Surabaya, Wakanda'
-);
-createCompany(
   6,
   'photo/default/company.png',
-  'MakinPaper',
-  'Manufacturing',
-  'This is our Making Paper Company',
-  'www.papercompany.com',
-  'papercompany@gmail.com',
-  '+62852124456789',
-  'Bandung, Wakanda'
+  'EcoEnergy',
+  'Energy',
+  'EcoEnergy is a renewable energy company committed to a sustainable future.',
+  'www.ecoenergy.com',
+  'info@ecoenergy.com',
+  '+62852123456782',
+  'Medan, Indonesia'
+);
+createCompany(
+  7,
+  'photo/default/company.png',
+  'FoodieFiesta',
+  'Food',
+  "FoodieFiesta is a food and beverage company that brings the world's flavors to your doorstep.",
+  'www.foodiefiesta.com',
+  'support@foodiefiesta.com',
+  '+62852123423781',
+  'Semarang, Indonesia'
+);
+createCompany(
+  8,
+  'photo/default/company.png',
+  'AutoMoto',
+  'Automotive',
+  'AutoMoto is an automotive company that designs and manufactures modern, efficient vehicles.',
+  'www.automoto.com',
+  'contact@automoto.com',
+  '+62852124456783',
+  'Palembang, Indonesia'
+);
+createCompany(
+  9,
+  'photo/default/company.png',
+  'FashionForward',
+  'Fashion',
+  'FashionForward is a leading fashion company creating trendy and stylish clothing for all.',
+  'www.fashionforward.com',
+  'info@fashionforward.com',
+  '+62852123456784',
+  'Makassar, Indonesia'
+);
+createCompany(
+  10,
+  'photo/default/company.png',
+  'BuildBetter',
+  'Construction',
+  'BuildBetter is a construction company committed to building better homes and offices.',
+  'www.buildbetter.com',
+  'support@buildbetter.com',
+  '+62852123423782',
+  'Denpasar, Indonesia'
 );
 
 const seedCompanies = async () => {

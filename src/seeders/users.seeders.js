@@ -10,10 +10,17 @@ const createUser = (email, password, role) => {
   users.push(user);
 };
 
-for (let i = 0; i < 3; i++) {
-  createUser(`jobseeker${i}@gmail.com`, `password${i}`, 'jobseeker');
-  createUser(`company${i}@company.com`, `password${i}`, 'company');
-}
+createUser('alice.johnson@gmail.com', 'password123', 'jobseeker');
+createUser('bob.williams@gmail.com', 'password123', 'jobseeker');
+createUser('carol.davis@gmail.com', 'password123', 'jobseeker');
+createUser('david.miller@gmail.com', 'password123', 'jobseeker');
+createUser('eva.garcia@gmail.com', 'password123', 'jobseeker');
+
+createUser('acme.eco@gmail.com', 'password123', 'company');
+createUser('foodie.fiesta@gmail.com', 'password123', 'company');
+createUser('auto.motive@gmail.com', 'password123', 'company');
+createUser('forward.comp@gmail.com', 'password123', 'company');
+createUser('better.build@gmail.com', 'password123', 'company');
 
 const seedUsers = async () => {
   try {

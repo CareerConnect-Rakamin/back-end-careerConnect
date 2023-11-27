@@ -2,16 +2,27 @@ const { jobsRepositories } = require('../repositories');
 const { usersRepositories } = require('../repositories');
 
 async function getJobs({ page = 1, keyword = '' }) {
+  const limit = 12;
   const jobs = await jobsRepositories.getJobs({
     page,
     keyword
   });
 
-  if (!jobs.length) {
+  if (!jobs.rows.length) {
     throw new Error('Not found');
   }
 
-  return jobs;
+  const totalPages = Math.ceil(jobs.count / limit);
+
+  return {
+    jobs: jobs.rows,
+    pagination: {
+      page: page,
+      perPage: limit,
+      total: jobs.count,
+      totalPages: totalPages
+    }
+  };
 }
 
 async function getJobByCompanyId(companies_id) {
