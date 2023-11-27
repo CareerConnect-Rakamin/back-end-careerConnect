@@ -18,6 +18,12 @@ async function createApply(req, res) {
         message: 'Not found'
       });
     }
+    if (err.message == 'Job is closed') {
+      return res.status(403).json({
+        status: 'failed',
+        message: err.message
+      });
+    }
     if (err.message == 409) {
       return res.status(409).json({
         status: 'failed',
