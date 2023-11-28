@@ -35,6 +35,10 @@ router
 
 router
   .route('/seeker/job/:jobId')
+  .get(
+    [authMiddleware.authenticate, authMiddleware.authorize(ROLES.JOBSEEKER)],
+    applicationsControllers.getApplyBySeekerAndJobId
+  )
   .put(
     [
       authMiddleware.authenticate,

@@ -39,6 +39,18 @@ async function getApplyBySeekerId(jobseekers_id) {
   return apply;
 }
 
+async function getApplyBySeekerAndJobId({ jobs_id, jobseekers_id }) {
+  const apply = await applicationsRepositories.getApplyBySeekerAndJobId({
+    jobs_id,
+    jobseekers_id
+  });
+  if (!apply.length) {
+    throw new Error(404);
+  }
+
+  return apply;
+}
+
 async function getApplyByJobId({ jobs_id, companies_id }) {
   const access = await jobsRepositories.getJobByIdAndCompanyId({
     id: jobs_id,
@@ -125,6 +137,7 @@ module.exports = {
   createApply,
   getApplyByJobId,
   getApplyBySeekerId,
+  getApplyBySeekerAndJobId,
   updateApplyFromSeeker,
   updateApplyFromCompany
 };
