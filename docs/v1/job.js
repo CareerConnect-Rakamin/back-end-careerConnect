@@ -141,6 +141,7 @@
  */
 
 /**
+/**
  * @swagger
  * /jobs/{id}:
  *   get:
@@ -173,39 +174,43 @@
  *                          example: 1
  *                        companies_id:
  *                          type: integer
- *                          example: 2
+ *                          example: 6
+ *                        company_name:
+ *                          type: string
+ *                          example: EcoEnergy
+ *                        company_photo:
+ *                          type: string
+ *                          example: photo/default/company.png
  *                        name:
  *                          type: string
- *                          example: IT Support
+ *                          example: Renewable Energy Engineer
  *                        description:
  *                          type: string
- *                          example: Work as IT Support
+ *                          example: Work as a Renewable Energy Engineer at EcoEnergy
+ *                        what_will_you_do:
+ *                          type: string
+ *                          example: "[\"Design and test renewable energy systems\",\"Conduct energy audits\",\"Develop energy conservation plans\"]"
+ *                        what_will_you_need:
+ *                          type: string
+ *                          example: "[\"Degree in Engineering\",\"good communication skills\",\"Experience with renewable energy systems\",\"Knowledge of energy conservation techniques\"]"
  *                        location:
  *                          type: string
- *                          example: Jakarta, Wakanda
+ *                          example: Medan, Indonesia
  *                        category:
  *                          type: string
- *                          example: Technology
+ *                          example: Energy
  *                        job_type:
  *                          type: string
  *                          example: WFH
  *                        salary:
  *                          type: string
- *                          example: "3000000"
+ *                          example: "5000000"
  *                        capacity:
  *                          type: integer
- *                          example: 10
+ *                          example: 5
  *                        is_open:
  *                          type: boolean
  *                          example: true
- *                        createdAt:
- *                          type: string
- *                          format: date-time
- *                          example: "2023-11-16T16:23:00.922Z"
- *                        updatedAt:
- *                          type: string
- *                          format: date-time
- *                          example: "2023-11-16T16:23:00.922Z"
  *       '400':
  *          $ref: '#/components/responses/InvalidInput'
  *       '404':
@@ -294,52 +299,7 @@
  *       content:
  *         application/json:
  *           schema:
- *              type: object
- *              properties:
- *                name:
- *                  type: string
- *                  description: Name of job
- *                  example: Backend Developer
- *                description:
- *                  type: string
- *                  description: describe the job
- *                  example: Making Backend Environment for an event
- *                what_will_you_do:
- *                  type: string
- *                  description: what will jobseeker do in this job
- *                  example: '- Experience in recruitment, good communication skills\n- Experience in conflict resolution, good interpersonal skills\n- Experience in policy development, good organizational skills'
- *                what_will_you_need:
- *                  type: string
- *                  description: what will jobseeker do in this job
- *                  example: '- Experience in IT support, good communication skills\n- Experience with hardware and software troubleshooting\n- Experience in IT infrastructure maintenance'
- *                location:
- *                  type: string
- *                  description: Location of Job
- *                  example: Jakarta, Wakanda
- *                category:
- *                  type: string
- *                  enum: [Information, Technology, Healthcare, Finance, Education, Sales, Marketing, Engineering, Customer_Service, Human_Resources]
- *                  description: Category of Job
- *                  example: Technology
- *                job_type:
- *                  type: string
- *                  enum: [WFH, WFO]
- *                  description: Type of working is it Work From Office or Home
- *                  example: WFH
- *                salary:
- *                  type: bigInteger
- *                  minimum: 1000
- *                  description: Salary for the job
- *                  example: 5000000
- *                capacity:
- *                  type: integer
- *                  minimum: 1
- *                  description: Capacity for the job
- *                  example: 15
- *                is_open:
- *                  type: boolean
- *                  description: the jobs is open or close
- *                  example: true
+ *             $ref: '#/components/schemas/jobs'
  *     responses:
  *       '200':
  *         description: OK
