@@ -5,6 +5,7 @@ const specs = require('./utils/swagger');
 const { morganMiddleware } = require('./middlewares');
 const routes = require('./routes');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -13,6 +14,7 @@ const corsOption = {
   credentials: true
 };
 app.use(cors(corsOption));
+app.use(cookieParser());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 app.use(morganMiddleware);
 app.use(express.urlencoded({ extended: false }));
