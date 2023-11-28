@@ -10,8 +10,8 @@ const requirements = {
   createJobs: [
     body('name').isString().isLength({ min: 3 }),
     body('description').isString().isLength({ min: 3 }),
-    body('what_will_you_do').isString(),
-    body('what_will_you_need').isString(),
+    body('what_will_you_do').isArray(),
+    body('what_will_you_need').isArray(),
     body('location').isString().isLength({ min: 3 }),
     body('category')
       .isString()
@@ -43,8 +43,8 @@ const requirements = {
       .isString()
       .isLength({ min: 3 })
       .optional({ nullable: true }),
-    body('what_will_you_do').isString().optional({ nullable: true }),
-    body('what_will_you_need').isString().optional({ nullable: true }),
+    body('what_will_you_do').isArray().optional({ nullable: true }),
+    body('what_will_you_need').isArray().optional({ nullable: true }),
     body('location')
       .isString()
       .isLength({ min: 3 })

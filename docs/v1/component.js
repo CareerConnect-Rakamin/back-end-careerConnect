@@ -121,23 +121,27 @@
  *         name:
  *           type: string
  *           description: Name of job
- *           example: Backend Developer
+ *           example: Frontend Developer
  *         description:
  *           type: string
  *           description: describe the job
- *           example: Making Backend Environment for an event
+ *           example: Making Frontend Environment for an event
  *         what_will_you_do:
- *           type: string
+ *           type: array
+ *           items:
+ *             type: string
  *           description: what will jobseeker do in this job
- *           example: '- Experience in recruitment, good communication skills\n- Experience in conflict resolution, good interpersonal skills\n- Experience in policy development, good organizational skills'
+ *           example: ["Provide IT support to staff and customers", "Troubleshoot hardware and software issues", "Maintain IT infrastructure"]
  *         what_will_you_need:
- *           type: string
+ *           type: array
+ *           items:
+ *             type: string
  *           description: what will jobseeker do in this job
- *           example: '- Experience in IT support, good communication skills\n- Experience with hardware and software troubleshooting\n- Experience in IT infrastructure maintenance'
+ *           example: ["Experience in IT support, good communication skills", "Experience with hardware and software troubleshooting", "Experience in IT infrastructure maintenance"]
  *         location:
  *           type: string
  *           description: Location of Job
- *           example: Jakarta, Wakanda
+ *           example: Bandung, Wakanda
  *         category:
  *           type: string
  *           enum: [Information, Technology, Healthcare, Finance, Education, Sales, Marketing, Engineering, Customer_Service, Human_Resources]
@@ -149,7 +153,7 @@
  *           description: Type of working is it Work From Office or Home
  *           example: WFH
  *         salary:
- *           type: bigInteger
+ *           type: integer
  *           minimum: 1000
  *           description: Salary for the job
  *           example: 5000000
@@ -157,7 +161,7 @@
  *           type: integer
  *           minimum: 1
  *           description: Capacity for the job
- *           example: 15
+ *           example: 5
  *     jobseeker:
  *       type: object
  *       properties:

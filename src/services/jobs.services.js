@@ -75,16 +75,14 @@ async function createJob({
     companies_id,
     name,
     description,
-    what_will_you_do,
-    what_will_you_need,
+    what_will_you_do: JSON.parse(what_will_you_do),
+    what_will_you_need: JSON.parse(what_will_you_need),
     location,
     category,
     job_type,
     salary,
     capacity
   });
-
-  return createJob;
 }
 
 async function updateJob({
@@ -124,8 +122,8 @@ async function updateJob({
     companies_id,
     name,
     description,
-    what_will_you_do,
-    what_will_you_need,
+    what_will_you_do: JSON.parse(what_will_you_do),
+    what_will_you_need: JSON.parse(what_will_you_need),
     location,
     category,
     job_type,
