@@ -1,12 +1,13 @@
 const { col } = require('sequelize');
 const { JobModel, CompanyModel } = require('../models');
 const { Op } = require('sequelize');
+const moment = require('moment-timezone');
 
 async function closeExpiredJobs() {
-  const now = new Date();
+  const jakartaTime = moment().tz('Asia/Jakarta');
   return JobModel.update(
     { is_open: false },
-    { where: { closing_date: { [Op.lte]: now }, is_open: true } }
+    { where: { closing_date: { [Op.lte]: jakartaTime }, is_open: true } }
   );
 }
 
@@ -25,6 +26,7 @@ async function getJobs({ page, keyword }) {
       'job_type',
       'salary',
       'capacity',
+      'closing_date',
       'is_open'
     ],
     where: [

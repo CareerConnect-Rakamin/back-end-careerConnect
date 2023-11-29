@@ -383,7 +383,7 @@ createJob(
   'WFH',
   6000000,
   7,
-  '2023-11-30',
+  Date.now(),
   true
 );
 
