@@ -55,7 +55,8 @@ async function createJob({
   category,
   job_type,
   salary,
-  capacity
+  capacity,
+  closing_date
 }) {
   const user = await usersRepositories.getUserById(companies_id);
   if (!user) {
@@ -81,7 +82,8 @@ async function createJob({
     category,
     job_type,
     salary,
-    capacity
+    capacity,
+    closing_date
   });
 }
 
@@ -97,6 +99,7 @@ async function updateJob({
   job_type,
   salary,
   capacity,
+  closing_date,
   is_open
 }) {
   const user = await usersRepositories.getUserById(companies_id);
@@ -129,6 +132,7 @@ async function updateJob({
     job_type,
     salary,
     capacity,
+    closing_date,
     is_open
   });
 
