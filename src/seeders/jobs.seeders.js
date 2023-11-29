@@ -14,6 +14,7 @@ const createJob = (
   job_type,
   salary,
   capacity,
+  closing_date,
   is_open
 ) => {
   const job = {
@@ -27,10 +28,24 @@ const createJob = (
     job_type,
     salary,
     capacity,
+    closing_date,
     is_open
   };
   jobs.push(job);
 };
+
+function getRandomClosingDate() {
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const thirtyDaysFromNow = new Date(today);
+  thirtyDaysFromNow.setDate(thirtyDaysFromNow.getDate() + 30);
+
+  return new Date(
+    tomorrow.getTime() +
+      Math.random() * (thirtyDaysFromNow.getTime() - tomorrow.getTime())
+  );
+}
 
 createJob(
   6,
@@ -52,6 +67,7 @@ createJob(
   'WFH',
   5000000,
   5,
+  getRandomClosingDate(),
   true
 );
 createJob(
@@ -74,6 +90,7 @@ createJob(
   'WFO',
   4500000,
   4,
+  getRandomClosingDate(),
   true
 );
 createJob(
@@ -96,6 +113,7 @@ createJob(
   'WFH',
   5500000,
   6,
+  getRandomClosingDate(),
   true
 );
 createJob(
@@ -118,6 +136,7 @@ createJob(
   'WFO',
   4000000,
   3,
+  getRandomClosingDate(),
   true
 );
 createJob(
@@ -140,6 +159,7 @@ createJob(
   'WFH',
   6000000,
   7,
+  getRandomClosingDate(),
   true
 );
 
@@ -164,6 +184,7 @@ createJob(
   'WFH',
   7000000,
   4,
+  getRandomClosingDate(),
   true
 );
 createJob(
@@ -185,6 +206,7 @@ createJob(
   'WFO',
   6500000,
   3,
+  getRandomClosingDate(),
   true
 );
 createJob(
@@ -206,6 +228,7 @@ createJob(
   'WFH',
   5500000,
   6,
+  getRandomClosingDate(),
   true
 );
 createJob(
@@ -227,6 +250,7 @@ createJob(
   'WFO',
   4000000,
   3,
+  getRandomClosingDate(),
   true
 );
 createJob(
@@ -248,6 +272,7 @@ createJob(
   'WFH',
   6000000,
   7,
+  getRandomClosingDate(),
   true
 );
 
@@ -270,6 +295,7 @@ createJob(
   'WFH',
   7000000,
   4,
+  getRandomClosingDate(),
   true
 );
 createJob(
@@ -291,6 +317,7 @@ createJob(
   'WFO',
   6500000,
   3,
+  getRandomClosingDate(),
   true
 );
 createJob(
@@ -312,6 +339,7 @@ createJob(
   'WFH',
   5500000,
   6,
+  getRandomClosingDate(),
   true
 );
 createJob(
@@ -333,6 +361,7 @@ createJob(
   'WFO',
   4000000,
   3,
+  getRandomClosingDate(),
   true
 );
 createJob(
@@ -354,6 +383,7 @@ createJob(
   'WFH',
   6000000,
   7,
+  '2023-11-30',
   true
 );
 
