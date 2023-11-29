@@ -69,6 +69,7 @@
  *                                  job_type: "WFH"
  *                                  salary: "3000000"
  *                                  capacity: 10
+ *                                  closing_date: "2023-11-30T00:00:00.000Z"
  *                                  is_open: true
  *                                  createdAt: "2023-11-11T13:42:11.304Z"
  *                                  updatedAt: "2023-11-11T13:42:11.304Z"
@@ -83,6 +84,7 @@
  *                                  job_type: "WFO"
  *                                  salary: "2500000"
  *                                  capacity: 5
+ *                                  closing_date: "2023-11-30T00:00:00.000Z"
  *                                  is_open: true
  *                                  createdAt: "2023-11-11T13:42:11.304Z"
  *                                  updatedAt: "2023-11-11T13:42:11.304Z"
@@ -208,6 +210,10 @@
  *                        capacity:
  *                          type: integer
  *                          example: 5
+ *                        closing_date: 
+ *                          type: string
+ *                          format: date
+ *                          example: "2023-11-30T00:00:00.000Z"
  *                        is_open:
  *                          type: boolean
  *                          example: true
@@ -255,6 +261,7 @@
  *                                  job_type: "WFH"
  *                                  salary: "3000000"
  *                                  capacity: 10
+ *                                  closing_date: "2023-11-30T00:00:00.000Z"
  *                                  is_open: true
  *                                  createdAt: "2023-11-11T13:42:11.304Z"
  *                                  updatedAt: "2023-11-11T13:42:11.304Z"
@@ -267,6 +274,7 @@
  *                                  job_type: "WFH"
  *                                  salary: 5000000
  *                                  capacity: 10
+ *                                  closing_date: "2023-11-30T00:00:00.000Z"
  *                                  is_open: true
  *                                  createdAt: "2023-11-16T19:14:25.097Z"
  *                                  updatedAt: "2023-11-16T19:14:25.097Z"

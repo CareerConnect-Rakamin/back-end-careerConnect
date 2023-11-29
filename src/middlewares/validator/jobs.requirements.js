@@ -34,7 +34,18 @@ const requirements = {
       ]),
     body('job_type').isString().isIn(['WFH', 'WFO']),
     body('salary').isInt({ min: 1000 }).default(0).optional({ nullable: true }),
-    body('capacity').isInt({ min: 1 }).default(0).optional({ nullable: true })
+    body('capacity').isInt({ min: 1 }).default(0).optional({ nullable: true }),
+    body('closing_date').custom((value) => {
+      const closingDate = new Date(value);
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      closingDate.setHours(0, 0, 0, 0);
+      tomorrow.setHours(0, 0, 0, 0);
+      if (closingDate < tomorrow) {
+        throw new Error('Closing date should be at least tomorrow');
+      }
+      return true;
+    })
   ],
   updateJobs: [
     param('jobId').isInt({ min: 1 }),
@@ -75,6 +86,19 @@ const requirements = {
       .optional({ nullable: true }),
     body('salary').isInt({ min: 1000 }).default(0).optional({ nullable: true }),
     body('capacity').isInt({ min: 1 }).default(0).optional({ nullable: true }),
+    body('closing_date')
+      .custom((value) => {
+        const closingDate = new Date(value);
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        closingDate.setHours(0, 0, 0, 0);
+        tomorrow.setHours(0, 0, 0, 0);
+        if (closingDate < tomorrow) {
+          throw new Error('Closing date should be at least tomorrow');
+        }
+        return true;
+      })
+      .optional({ nullable: true }),
     body('is_open').isBoolean().default(true).optional({ nullable: true })
   ],
   deleteJob: [param('jobId').isInt({ min: 1 })],
