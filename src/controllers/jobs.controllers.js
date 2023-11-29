@@ -79,7 +79,8 @@ async function createJob(req, res) {
       category,
       job_type,
       salary,
-      capacity
+      capacity,
+      closing_date
     } = req.body;
     const result = await jobsServices.createJob({
       companies_id: req.userdata.id,
@@ -91,7 +92,8 @@ async function createJob(req, res) {
       category,
       job_type,
       salary,
-      capacity
+      capacity,
+      closing_date
     });
     res.status(201).json({
       status: 'Success',
@@ -130,6 +132,7 @@ async function updateJob(req, res) {
       job_type,
       salary,
       capacity,
+      closing_date,
       is_open
     } = req.body;
     const result = await jobsServices.updateJob({
@@ -144,6 +147,7 @@ async function updateJob(req, res) {
       job_type,
       salary,
       capacity,
+      closing_date,
       is_open
     });
     res.status(200).json({
