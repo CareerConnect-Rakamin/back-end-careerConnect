@@ -68,6 +68,10 @@ const Job = db.define(
     capacity: {
       type: DataTypes.INTEGER
     },
+    closing_date: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
     is_open: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
