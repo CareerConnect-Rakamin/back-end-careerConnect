@@ -162,6 +162,11 @@
  *           minimum: 1
  *           description: Capacity for the job
  *           example: 5
+ *         closing_date:
+ *           type: string
+ *           format: date
+ *           description: The date when the job application closes
+ *           example: '2023-12-31'
  *     jobseeker:
  *       type: object
  *       properties:
