@@ -22,7 +22,7 @@ const UpdateCV = async (req, res) => {
 const DeleteCV = async (req, res) => {
   const id = req.userdata.id;
   try {
-    const result = await CVService.DeleteCV({ id });
+    const result = await CVService.UpdateCV({ id, cv_path: null });
     if (result) {
       res
         .status(200)
