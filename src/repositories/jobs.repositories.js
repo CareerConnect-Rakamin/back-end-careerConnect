@@ -2,6 +2,14 @@ const { col } = require('sequelize');
 const { JobModel, CompanyModel } = require('../models');
 const { Op } = require('sequelize');
 
+async function closeExpiredJobs() {
+  const now = new Date();
+  return JobModel.update(
+    { is_open: false },
+    { where: { closing_date: { [Op.lte]: now }, is_open: true } }
+  );
+}
+
 async function getJobs({ page, keyword }) {
   const offset = (page - 1) * 12;
   return JobModel.findAndCountAll({
@@ -78,6 +86,7 @@ async function getJobById(id) {
       'job_type',
       'salary',
       'capacity',
+      'closing_date',
       'is_open'
     ],
     include: [
@@ -125,7 +134,8 @@ async function createJob({
   category,
   job_type,
   salary,
-  capacity
+  capacity,
+  closing_date
 }) {
   return JobModel.create({
     companies_id,
@@ -138,6 +148,7 @@ async function createJob({
     job_type,
     salary,
     capacity,
+    closing_date,
     is_open: true
   });
 }
@@ -154,6 +165,7 @@ async function updateJob({
   job_type,
   salary,
   capacity,
+  closing_date,
   is_open
 }) {
   return JobModel.update(
@@ -169,6 +181,7 @@ async function updateJob({
       job_type,
       salary,
       capacity,
+      closing_date,
       is_open
     },
     {
@@ -188,6 +201,7 @@ async function deleteJob(id) {
 }
 
 module.exports = {
+  closeExpiredJobs,
   getJobs,
   getJobById,
   getJobByCompanyId,
