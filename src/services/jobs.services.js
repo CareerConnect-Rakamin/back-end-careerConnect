@@ -120,13 +120,11 @@ async function updateJob({
     throw new Error(403);
   }
 
-  const updateJob = await jobsRepositories.updateJob({
+  let updateFields = {
     id,
     companies_id,
     name,
     description,
-    what_will_you_do: JSON.parse(what_will_you_do),
-    what_will_you_need: JSON.parse(what_will_you_need),
     location,
     category,
     job_type,
@@ -134,9 +132,17 @@ async function updateJob({
     capacity,
     closing_date,
     is_open
-  });
+  };
 
-  return updateJob;
+  if (what_will_you_do !== undefined) {
+    updateFields.what_will_you_do = JSON.parse(what_will_you_do);
+  }
+
+  if (what_will_you_need !== undefined) {
+    updateFields.what_will_you_need = JSON.parse(what_will_you_need);
+  }
+
+  const updateJob = await jobsRepositories.updateJob(updateFields);
 }
 
 async function deleteJob({ id, companies_id }) {
