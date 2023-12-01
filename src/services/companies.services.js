@@ -34,11 +34,11 @@ const updateCompanyById = async (id, data) => {
   await companiesRepositories.updateCompanyById(id, data);
 };
 
-async function getCompanies({ page = 1, name = '' }) {
+async function getCompanies({ page = 1, keyword = '' }) {
   const limit = 12;
   const result = await companiesRepositories.getCompanies({
     page,
-    name
+    keyword
   });
 
   if (!result.rows.length) {
