@@ -3,13 +3,24 @@ const bcrypt = require('bcrypt');
 const { col } = require('sequelize');
 const { Op } = require('sequelize');
 
-async function getCompanies({ page, name }) {
+async function getCompanies({ page, keyword }) {
   const companies = await CompanyModel.findAndCountAll({
-    where: {
-      name: {
-        [Op.iLike]: '%' + name + '%'
+    where: [
+      {
+        [Op.or]: [
+          {
+            name: {
+              [Op.iLike]: `%${keyword}%`
+            }
+          },
+          {
+            address: {
+              [Op.iLike]: `%${keyword}%`
+            }
+          }
+        ]
       }
-    },
+    ],
     offset: (page - 1) * 12,
     limit: 12,
     order: [['name', 'ASC']]
