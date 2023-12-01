@@ -2,24 +2,13 @@ const { col } = require('sequelize');
 const { JobModel, CompanyModel } = require('../models');
 const { Op } = require('sequelize');
 
-async function getJobs({ page, keyword }) {
+async function getJobs({ page, keyword, job_type }) {
   const offset = (page - 1) * 12;
-  return JobModel.findAll({
-    attributes: [
-      'id',
-      'companies_id',
-      [col('company.name'), 'company_name'],
-      [col('company.photo_profile'), 'company_photo'],
-      'name',
-      'description',
-      'location',
-      'category',
-      'job_type',
-      'salary',
-      'capacity',
-      'is_open'
-    ],
-    where: {
+  let whereClause = [
+    {
+      is_open: true
+    },
+    {
       [Op.or]: [
         {
           name: {
@@ -32,7 +21,32 @@ async function getJobs({ page, keyword }) {
           }
         }
       ]
-    },
+    }
+  ];
+
+  if (job_type) {
+    whereClause.push({
+      job_type: job_type.toUpperCase()
+    });
+  }
+
+  return JobModel.findAndCountAll({
+    attributes: [
+      'id',
+      'companies_id',
+      [col('company.name'), 'company_name'],
+      [col('company.photo_profile'), 'company_photo'],
+      'name',
+      'description',
+      'location',
+      'category',
+      'job_type',
+      'salary',
+      'capacity',
+      'closing_date',
+      'is_open'
+    ],
+    where: whereClause,
     offset,
     limit: 12,
     include: [
@@ -42,7 +56,8 @@ async function getJobs({ page, keyword }) {
         attributes: [],
         as: 'company'
       }
-    ]
+    ],
+    order: [['id', 'ASC']]
   });
 }
 
