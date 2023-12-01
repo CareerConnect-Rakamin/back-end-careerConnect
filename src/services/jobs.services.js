@@ -1,11 +1,12 @@
 const { jobsRepositories } = require('../repositories');
 const { usersRepositories } = require('../repositories');
 
-async function getJobs({ page = 1, keyword = '' }) {
+async function getJobs({ page = 1, keyword = '', job_type }) {
   const limit = 12;
   const jobs = await jobsRepositories.getJobs({
     page,
-    keyword
+    keyword,
+    job_type
   });
 
   if (!jobs.rows.length) {

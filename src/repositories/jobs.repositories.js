@@ -11,8 +11,34 @@ async function closeExpiredJobs() {
   );
 }
 
-async function getJobs({ page, keyword }) {
+async function getJobs({ page, keyword, job_type }) {
   const offset = (page - 1) * 12;
+  let whereClause = [
+    {
+      is_open: true
+    },
+    {
+      [Op.or]: [
+        {
+          name: {
+            [Op.iLike]: `%${keyword}%`
+          }
+        },
+        {
+          location: {
+            [Op.iLike]: `%${keyword}%`
+          }
+        }
+      ]
+    }
+  ];
+
+  if (job_type) {
+    whereClause.push({
+      job_type: job_type.toUpperCase()
+    });
+  }
+  
   return JobModel.findAndCountAll({
     attributes: [
       'id',
@@ -29,25 +55,7 @@ async function getJobs({ page, keyword }) {
       'closing_date',
       'is_open'
     ],
-    where: [
-      {
-        is_open: true
-      },
-      {
-        [Op.or]: [
-          {
-            name: {
-              [Op.iLike]: `%${keyword}%`
-            }
-          },
-          {
-            location: {
-              [Op.iLike]: `%${keyword}%`
-            }
-          }
-        ]
-      }
-    ],
+    where: whereClause,
     offset,
     limit: 12,
     include: [
