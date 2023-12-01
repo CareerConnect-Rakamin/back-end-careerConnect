@@ -9,6 +9,10 @@ async function createApply({ jobs_id, jobseekers_id }) {
     throw new Error(404);
   }
 
+  if (job.is_open == false) {
+    throw new Error('Job is closed');
+  }
+
   const existApply = await applicationsRepositories.getApplyBySeekerAndJobId({
     jobs_id,
     jobseekers_id
@@ -28,6 +32,18 @@ async function createApply({ jobs_id, jobseekers_id }) {
 async function getApplyBySeekerId(jobseekers_id) {
   const apply =
     await applicationsRepositories.getApplyBySeekerId(jobseekers_id);
+  if (!apply.length) {
+    throw new Error(404);
+  }
+
+  return apply;
+}
+
+async function getApplyBySeekerAndJobId({ jobs_id, jobseekers_id }) {
+  const apply = await applicationsRepositories.getApplyBySeekerAndJobId({
+    jobs_id,
+    jobseekers_id
+  });
   if (!apply.length) {
     throw new Error(404);
   }
@@ -121,6 +137,7 @@ module.exports = {
   createApply,
   getApplyByJobId,
   getApplyBySeekerId,
+  getApplyBySeekerAndJobId,
   updateApplyFromSeeker,
   updateApplyFromCompany
 };

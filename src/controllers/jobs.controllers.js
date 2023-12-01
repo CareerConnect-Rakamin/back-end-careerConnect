@@ -6,7 +6,8 @@ async function getJobs(req, res) {
     const result = await jobsServices.getJobs(req.query);
     res.json({
       status: 'Success',
-      data: result
+      pagination: result.pagination,
+      data: result.jobs
     });
   } catch (error) {
     if (error.message == 'Not found') {
@@ -78,19 +79,21 @@ async function createJob(req, res) {
       category,
       job_type,
       salary,
-      capacity
+      capacity,
+      closing_date
     } = req.body;
     const result = await jobsServices.createJob({
       companies_id: req.userdata.id,
       name,
       description,
-      what_will_you_do,
-      what_will_you_need,
+      what_will_you_do: JSON.stringify(what_will_you_do),
+      what_will_you_need: JSON.stringify(what_will_you_need),
       location,
       category,
       job_type,
       salary,
-      capacity
+      capacity,
+      closing_date
     });
     res.status(201).json({
       status: 'Success',
@@ -129,6 +132,7 @@ async function updateJob(req, res) {
       job_type,
       salary,
       capacity,
+      closing_date,
       is_open
     } = req.body;
     const result = await jobsServices.updateJob({
@@ -136,13 +140,14 @@ async function updateJob(req, res) {
       companies_id: req.userdata.id,
       name,
       description,
-      what_will_you_do,
-      what_will_you_need,
+      what_will_you_do: JSON.stringify(what_will_you_do),
+      what_will_you_need: JSON.stringify(what_will_you_need),
       location,
       category,
       job_type,
       salary,
       capacity,
+      closing_date,
       is_open
     });
     res.status(200).json({

@@ -1,6 +1,15 @@
 const { col } = require('sequelize');
 const { JobModel, CompanyModel } = require('../models');
 const { Op } = require('sequelize');
+const moment = require('moment-timezone');
+
+async function closeExpiredJobs() {
+  const jakartaTime = moment().tz('Asia/Jakarta');
+  return JobModel.update(
+    { is_open: false },
+    { where: { closing_date: { [Op.lte]: jakartaTime }, is_open: true } }
+  );
+}
 
 async function getJobs({ page, keyword, job_type }) {
   const offset = (page - 1) * 12;
@@ -29,7 +38,7 @@ async function getJobs({ page, keyword, job_type }) {
       job_type: job_type.toUpperCase()
     });
   }
-
+  
   return JobModel.findAndCountAll({
     attributes: [
       'id',
@@ -87,6 +96,7 @@ async function getJobById(id) {
       'job_type',
       'salary',
       'capacity',
+      'closing_date',
       'is_open'
     ],
     include: [
@@ -134,19 +144,21 @@ async function createJob({
   category,
   job_type,
   salary,
-  capacity
+  capacity,
+  closing_date
 }) {
   return JobModel.create({
     companies_id,
     name,
     description,
-    what_will_you_do,
-    what_will_you_need,
+    what_will_you_do: JSON.stringify(what_will_you_do),
+    what_will_you_need: JSON.stringify(what_will_you_need),
     location,
     category,
     job_type,
     salary,
     capacity,
+    closing_date,
     is_open: true
   });
 }
@@ -163,6 +175,7 @@ async function updateJob({
   job_type,
   salary,
   capacity,
+  closing_date,
   is_open
 }) {
   return JobModel.update(
@@ -171,13 +184,14 @@ async function updateJob({
       companies_id,
       name,
       description,
-      what_will_you_do,
-      what_will_you_need,
+      what_will_you_do: JSON.stringify(what_will_you_do),
+      what_will_you_need: JSON.stringify(what_will_you_need),
       location,
       category,
       job_type,
       salary,
       capacity,
+      closing_date,
       is_open
     },
     {
@@ -197,6 +211,7 @@ async function deleteJob(id) {
 }
 
 module.exports = {
+  closeExpiredJobs,
   getJobs,
   getJobById,
   getJobByCompanyId,

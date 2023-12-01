@@ -28,11 +28,14 @@ const Company = db.define(
         'Healthcare',
         'Finance',
         'Education',
-        'Retail',
+        'Fashion',
         'Entertainment',
         'Manufacturing',
+        'Construction',
         'Consulting',
-        'Energy'
+        'Energy',
+        'Food',
+        'Automotive'
       ),
       allowNull: false
     },

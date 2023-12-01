@@ -141,3 +141,32 @@
  *       500:
  *         $ref: '#/components/responses/InternalServerError'
  */
+
+/**
+ * @swagger
+ * /jobseekers/profile/cv:
+ *  delete:
+ *    summary: Delete the CV profile
+ *    description: Delete CV
+ *    tags: [JobSeekers]
+ *    security:
+ *       - bearerAuth: []
+ *    responses:
+ *      200:
+ *        description: OK
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                status:
+ *                  example: Success
+ *                message:
+ *                  example: CV deleted successfully
+ *      401:
+ *         $ref: '#/components/responses/InvalidToken'
+ *      403:
+ *         $ref: '#/components/responses/PermissionDenied'
+ *      500:
+ *         $ref: '#/components/responses/InternalServerError'
+ */

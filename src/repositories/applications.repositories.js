@@ -77,7 +77,8 @@ async function getApplyByJobId(jobs_id) {
           }
         ]
       }
-    ]
+    ],
+    order: [['jobseekers_id', 'ASC']]
   });
 }
 

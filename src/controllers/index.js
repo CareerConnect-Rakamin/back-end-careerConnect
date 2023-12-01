@@ -6,6 +6,7 @@ const CVControllers = require('./CV.controllers');
 const CertificatesControllers = require('./certificates.controllers');
 const PhotoControllers = require('./photo-profile.controllers');
 const applicationsControllers = require('./applications.controllers');
+const usersControllers = require('./users.controllers');
 
 module.exports = {
   jobsControllers,
@@ -15,5 +16,6 @@ module.exports = {
   CVControllers,
   CertificatesControllers,
   PhotoControllers,
-  applicationsControllers
+  applicationsControllers,
+  usersControllers
 };

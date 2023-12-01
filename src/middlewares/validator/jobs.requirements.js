@@ -11,8 +11,8 @@ const requirements = {
   createJobs: [
     body('name').isString().isLength({ min: 3 }),
     body('description').isString().isLength({ min: 3 }),
-    body('what_will_you_do').isString(),
-    body('what_will_you_need').isString(),
+    body('what_will_you_do').isArray(),
+    body('what_will_you_need').isArray(),
     body('location').isString().isLength({ min: 3 }),
     body('category')
       .isString()
@@ -26,11 +26,27 @@ const requirements = {
         'Marketing',
         'Engineering',
         'Customer_Service',
-        'Human_Resources'
+        'Human_Resources',
+        'Energy',
+        'Food',
+        'Automotive',
+        'Fashion,',
+        'Construction'
       ]),
     body('job_type').isString().isIn(['WFH', 'WFO']),
     body('salary').isInt({ min: 1000 }).default(0).optional({ nullable: true }),
-    body('capacity').isInt({ min: 1 }).default(0).optional({ nullable: true })
+    body('capacity').isInt({ min: 1 }).default(0).optional({ nullable: true }),
+    body('closing_date').custom((value) => {
+      const closingDate = new Date(value);
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      closingDate.setHours(0, 0, 0, 0);
+      tomorrow.setHours(0, 0, 0, 0);
+      if (closingDate < tomorrow) {
+        throw new Error('Closing date should be at least tomorrow');
+      }
+      return true;
+    })
   ],
   updateJobs: [
     param('jobId').isInt({ min: 1 }),
@@ -39,8 +55,8 @@ const requirements = {
       .isString()
       .isLength({ min: 3 })
       .optional({ nullable: true }),
-    body('what_will_you_do').isString().optional({ nullable: true }),
-    body('what_will_you_need').isString().optional({ nullable: true }),
+    body('what_will_you_do').isArray().optional({ nullable: true }),
+    body('what_will_you_need').isArray().optional({ nullable: true }),
     body('location')
       .isString()
       .isLength({ min: 3 })
@@ -57,7 +73,12 @@ const requirements = {
         'Marketing',
         'Engineering',
         'Customer_Service',
-        'Human_Resources'
+        'Human_Resources',
+        'Energy',
+        'Food',
+        'Automotive',
+        'Fashion,',
+        'Construction'
       ])
       .optional({ nullable: true }),
     body('job_type')
@@ -66,6 +87,19 @@ const requirements = {
       .optional({ nullable: true }),
     body('salary').isInt({ min: 1000 }).default(0).optional({ nullable: true }),
     body('capacity').isInt({ min: 1 }).default(0).optional({ nullable: true }),
+    body('closing_date')
+      .custom((value) => {
+        const closingDate = new Date(value);
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        closingDate.setHours(0, 0, 0, 0);
+        tomorrow.setHours(0, 0, 0, 0);
+        if (closingDate < tomorrow) {
+          throw new Error('Closing date should be at least tomorrow');
+        }
+        return true;
+      })
+      .optional({ nullable: true }),
     body('is_open').isBoolean().default(true).optional({ nullable: true })
   ],
   deleteJob: [param('jobId').isInt({ min: 1 })],

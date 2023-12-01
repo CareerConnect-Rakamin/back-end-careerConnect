@@ -8,9 +8,11 @@ const createApplication = (jobseekers_id, jobs_id, status) => {
   applications.push(application);
 };
 
-createApplication(1, 1, 'pending');
+createApplication(1, 3, 'pending');
 createApplication(3, 1, 'pending');
 createApplication(3, 2, 'pending');
+createApplication(3, 4, 'pending');
+createApplication(5, 3, 'pending');
 
 const seedApplications = async () => {
   try {

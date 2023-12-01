@@ -6,7 +6,6 @@ const {
 const { secretKey } = require('../config');
 const { compareSync } = require('bcrypt');
 const { sign } = require('jsonwebtoken');
-const { addMinutes } = require('date-fns');
 const bcrypt = require('bcrypt');
 
 async function login({ email, password }) {
@@ -20,9 +19,9 @@ async function login({ email, password }) {
     throw new Error(401);
   }
 
-  const expiresIn = Math.floor(addMinutes(new Date(), 120).getTime() / 1000);
-  const authUser = { id: user.dataValues.id, exp: expiresIn };
-  const token = sign(authUser, secretKey);
+  const authUser = { id: user.dataValues.id, role: user.dataValues.role };
+
+  const token = sign(authUser, secretKey, { expiresIn: '5h' });
 
   return token;
 }

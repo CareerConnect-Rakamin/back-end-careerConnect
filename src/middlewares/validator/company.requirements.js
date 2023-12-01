@@ -14,11 +14,14 @@ const requirements = {
         'Healthcare',
         'Finance',
         'Education',
-        'Retail',
+        'Fashion',
         'Entertainment',
         'Manufacturing',
+        'Construction',
         'Consulting',
-        'Energy'
+        'Energy',
+        'Food',
+        'Automotive'
       ])
       .optional({ nullable: true }),
     body('email')
@@ -51,11 +54,14 @@ const requirements = {
       'Healthcare',
       'Finance',
       'Education',
-      'Retail',
+      'Fashion',
       'Entertainment',
       'Manufacturing',
+      'Construction',
       'Consulting',
-      'Energy'
+      'Energy',
+      'Food',
+      'Automotive'
     ]),
     body('address').isString().isLength({ min: 10 }),
     body('companyEmail').isEmail(),

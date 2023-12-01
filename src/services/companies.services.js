@@ -34,16 +34,27 @@ const updateCompanyById = async (id, data) => {
   await companiesRepositories.updateCompanyById(id, data);
 };
 
-async function getCompanies({ page = 1, name = '' }) {
+async function getCompanies({ page = 1, keyword = '' }) {
+  const limit = 12;
   const result = await companiesRepositories.getCompanies({
     page,
-    name
+    keyword
   });
 
-  if (!result.length) {
+  if (!result.rows.length) {
     throw new Error('Not found');
   }
-  return result;
+  const totalPages = Math.ceil(result.count / limit);
+
+  return {
+    result: result.rows,
+    pagination: {
+      page: page,
+      perPage: limit,
+      total: result.count,
+      totalPages: totalPages
+    }
+  };
 }
 
 module.exports = {
