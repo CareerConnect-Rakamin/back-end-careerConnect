@@ -26,7 +26,7 @@ const updateCompanyById = async (id, data) => {
   const { email } = data;
   if (email) {
     const emailExist = await usersRepositories.getUserByEmail(email);
-    if (emailExist) {
+    if (emailExist && company.email != emailExist.email) {
       throw new Error('Email already exist');
     }
   }
