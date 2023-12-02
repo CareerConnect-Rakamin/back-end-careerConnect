@@ -27,10 +27,16 @@
  *          default: 1
  *        description: Page number for pagination
  *      - in: query
- *        name: name
+ *        name: keyword
  *        schema:
  *          type: string
- *        description: Search term for job names
+ *        description: Search term for job names and location
+ *      - in: query
+ *        name: job_type
+ *        schema:
+ *          type: string
+ *          enum: ["wfh", "wfo", "WFH", "WFO"]
+ *        description: Search term for job types
  *    responses:
  *      '200':
  *        description: Successfull response

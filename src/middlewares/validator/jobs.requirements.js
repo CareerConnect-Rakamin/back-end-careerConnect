@@ -4,7 +4,9 @@ const requirements = {
   getJobs: [
     query('page').isInt({ min: 1 }).optional({ nullable: true }),
     query('keyword').isString().optional({ nullable: true }),
-    query('job_type').isIn(['WFH', 'WFO']).optional({ nullable: true })
+    query('job_type')
+      .isIn(['WFH', 'WFO', 'wfh', 'wfo'])
+      .optional({ nullable: true })
   ],
   getJobByCompanyId: [param('compId').isInt({ min: 1 })],
   getJobById: [param('jobId').isInt({ min: 1 })],

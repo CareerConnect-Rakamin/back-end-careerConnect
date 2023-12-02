@@ -27,10 +27,10 @@
  *           default: 1
  *         description: Page number for pagination
  *       - in: query
- *         name: name
+ *         name: keyword
  *         schema:
  *           type: string
- *         description: Search term for company names
+ *         description: Search term for company names and location
  *     responses:
  *       '200':
  *         description: Successful response
