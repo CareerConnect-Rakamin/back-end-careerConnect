@@ -38,7 +38,7 @@ async function getJobs({ page, keyword, job_type }) {
       job_type: job_type.toUpperCase()
     });
   }
-  
+
   return JobModel.findAndCountAll({
     attributes: [
       'id',
