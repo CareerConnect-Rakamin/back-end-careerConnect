@@ -25,7 +25,7 @@ router.use('/:foldername/:filename', (req, res) => {
   res.sendFile(filePath, (err) => {
     if (err) {
       console.error(err);
-      res.status(err.status).end();
+      res.status(500).end();
     }
   });
 });

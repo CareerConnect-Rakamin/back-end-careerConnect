@@ -67,7 +67,7 @@ router.get('/certificates/:id/:filename', (req, res) => {
   res.sendFile(filePath, (err) => {
     if (err) {
       logger.error(err);
-      res.status(err.status).end();
+      res.status(500).end();
     }
   });
 });
@@ -81,7 +81,7 @@ router.get('/cv/:id/:filename', (req, res) => {
   res.sendFile(filePath, (err) => {
     if (err) {
       logger.error(err);
-      res.status(err.status).end();
+      res.status(500).end();
     }
   });
 });
